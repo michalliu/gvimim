@@ -120,14 +120,9 @@ let s:appdata = expand('$VIM\.appdata')
 let g:jshint_rcfile = s:appdata.'\jshint\.jshintrc'
 " loadtemplate
 let g:template_path = s:appdata.'\load_template\templates\'
-" vimwiki
-let g:vimwiki_use_mouse = 1
-let g:vimwiki_list = [{
-			\"path":s:appdata."/vimwiki",
-			\"path_html":s:appdata."/vimwiki/html",
-			\"html_header":s:appdata."/html_template/header.tpl",
-			\"html_footer":s:appdata."/html_template/footer.tpl"
-			\}]
+
+" javascript字典
+au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict
 
 " 常用快捷键
 " F2取消高亮

@@ -1,0 +1,41 @@
+﻿set nocompatible
+"自动检测文件类型
+filetype plugin on
+"语法高亮开启
+syntax on
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+if has("win32")
+    
+    " 打开文件时用的编码
+    set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+
+    set lines=30
+    set columns=120
+
+    " 显示行号
+    set nu
+
+	" 不换行
+	set nowrap
+
+    " 设置缩进
+    set shiftwidth=4
+    set tabstop=4
+
+	" 关闭备份
+	set nobackup
+	set nowritebackup
+
+	" 移除菜单栏、工具栏和滚动条
+	set guioptions-=m
+	set guioptions-=T
+	set guioptions-=r
+	set guioptions-=b
+	
+	" 代码折叠 
+	set foldmethod=syntax
+	
+endif

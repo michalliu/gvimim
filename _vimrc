@@ -110,6 +110,14 @@ if has("win32")
 		" 设置窗口的起始位置和大小
 		winpos 250 200
 
+		" vimtweak 命令映射
+		" 透明度设置
+		command -nargs=1 SetAlpha call libcallnr("vimtweak.dll", "SetAlpha", <args>)
+		" 窗口总在最前
+		command -nargs=1 SetTopMost call libcallnr("vimtweak.dll", "EnableTopMost", <args>)
+		" 窗口最大化
+		command -nargs=1 SetMaximize call libcallnr("vimtweak.dll", "EnableMaximize", <args>)
+
 	endif
 
 endif

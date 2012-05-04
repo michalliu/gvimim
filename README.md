@@ -20,7 +20,7 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 使用之前
 -----------------------
-1. 推荐安装[python 2.7](http://python.org/getit/)，以便启用vim与python集成，否则有些插件不能加载
+1. 推荐安装[python 2.7](http://python.org/getit/)，以便启用vim与python集成，否则有些插件不能正常工作
 2. 为了获得最佳体验，请手动安装misc\fonts下的Menlo.ttc
 3. 路径不要含有中文，否则会引起菜单报错及主菜单乱码问题
 

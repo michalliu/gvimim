@@ -25,9 +25,15 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 集成插件
 -----------------------
-1. jshint
+1. jshint,jsruntime
 
-    javascript静态语法检查 
+    javascript静态语法检查与运行器
+    
+        :JSHintUpdate 检查语法
+        :RunJS 运行javascript代码
+        :RunJSBlock 运行部分javascript代码，如:RunJSBlock 1,3 运行1-3行的代码
+        :RunHtml 运行Html代码
+        :RunHtmlBlock 运行部分Html代码
    
 2. [pyflakes](http://www.vim.org/scripts/script.php?script_id=2441)
 

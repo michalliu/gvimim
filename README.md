@@ -18,15 +18,16 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 项目维护者: <http://t.qq.com/michalliu>
 
-注意
+使用之前
 -----------------------
-1. 推荐安装[python 2.7](http://python.org/getit/)，以便启用vim与python集成功能
-2. 路径不能含有中文，否则会引起菜单报错及主菜单乱码问题
+1. 推荐安装[python 2.7](http://python.org/getit/)，以便启用vim与python集成，否则有些插件不能正常工作
+2. 为了获得最佳体验，请手动安装misc\fonts下的Menlo.ttc
+3. 路径不要含有中文，否则会引起菜单报错及主菜单乱码问题
 
 集成插件列表
 -----------------------
 
-请参阅misc/docs目录，以获得这些插件更详细的文档
+请参阅misc/docs目录，以获得这些插件的详细文档。
 
 1. jshint,jsruntime
 

@@ -85,7 +85,7 @@ if !exists(":RunJS")
 endif
 
 if !exists(":RunJSBlock")
-    command -nargs=? RunJSBlock :call s:RunJS(<f-args>)
+    command -nargs=? RunJSBlock :call s:RunJS(<args>)
 endif
 
 if !exists(":RunHtml")
@@ -94,6 +94,6 @@ endif
 
 " addCommand to MixedHTMLAndJs
 if !exists(":RunHtmlBlock")
-    command -nargs=? RunHtmlBlock :call s:RunBrowser(<f-args>)
+    command -nargs=? RunHtmlBlock :call s:RunBrowser(<args>)
 endif
 

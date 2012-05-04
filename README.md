@@ -6,6 +6,7 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 在没有任何配置文件的情况下，Vim相比其它文字编辑器并没有明显优势，在中文环境下甚至有很多体验问题，如使用非等宽字体，中英输入法切换，gvim菜单撕不下来，光标跟随等问题，这些问题常常导致初学者放弃使用Vim，而官方解决这些问题的速度也不容乐观，这些都严重影响这个优秀编辑器在中国的推广。  
 
 另外简单说来，Vim本身就像是个优秀的进口发动机，我们必须要搭配一些优秀的配件（插件），再进行本地化改良，才能让它发挥最大的效用。
+
 本项目旨在解决上述问题，为Vim爱好者提供更合中国人习惯的，功能完善体贴的Vim，并降低Vim的使用门槛，它主要做以下工作：
 
 * 提供全中文的体验，俗称汉化
@@ -24,9 +25,15 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 集成插件
 -----------------------
-1. jshint
+1. jshint,jsruntime
 
-    javascript静态语法检查 
+    javascript静态语法检查与运行器
+    
+        :JSHintUpdate 检查语法
+        :RunJS 运行javascript代码
+        :RunJSBlock 运行部分javascript代码，如:RunJSBlock 1,3 运行1-3行的代码
+        :RunHtml 运行Html代码
+        :RunHtmlBlock 运行部分Html代码
    
 2. [pyflakes](http://www.vim.org/scripts/script.php?script_id=2441)
 

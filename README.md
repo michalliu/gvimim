@@ -85,9 +85,9 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
     
         :color {name}
         
-10. [vimtweak](https://github.com/mattn/vimtweak)
+10. [vimtweak](http://www.vim.org/scripts/script.php?script_id=687)
 
-    [vimtweak](http://www.vim.org/scripts/script.php?script_id=687)在windows下允许gVim.exe获得窗口半透明及全局置顶的效果，屏幕分辨率低的时候可以籍此避免窗口切换。
+    [vimtweak](https://github.com/mattn/vimtweak)在windows下允许gVim.exe获得窗口半透明及全局置顶的效果，屏幕分辨率低的时候可以籍此避免窗口切换。
     
         :SetAlpha 200 窗口透明度为200
         :SetTopMost 1 窗口总在最前

@@ -89,8 +89,8 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
     [vimtweak](http://www.vim.org/scripts/script.php?script_id=687)在windows下允许gVim.exe获得窗口半透明及全局置顶的效果，屏幕分辨率低的时候可以籍此避免窗口切换。
     
-        :call libcallnr("vimtweak.dll", "SetAlpha", 200) 窗口半透明
-        :call libcallnr("vimtweak.dll", "EnableTopMost", 1)  全局置顶
+        :SetAlpha 200 窗口透明度为200
+        :SetTopMost 1 窗口总在最前
 
 特别感谢
 -----------------------

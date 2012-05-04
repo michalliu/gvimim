@@ -18,6 +18,8 @@ endif
 
 let s:install_dir = expand("<sfile>:p:h")
 
+" monitor how many times lint is called
+let b:lint_count =0
 " this script aslo works on html
 " it just lint those text wraped by <script> tag
 " we use python parse html and ignore scripts in one line
@@ -249,6 +251,7 @@ function! s:JSHint(autoclear,...)
           " endif
           " let b:cleared = 1
       " endif
+      let b:lint_count +=1
   endif
 
   " Detect range
@@ -308,6 +311,7 @@ parser.feed(vim.eval("join(getline(1,'$'),'\n')"))
 for start,end in parser.lintableScripts:
     vim.command('call s:JSHint(0,%d,%d)' % (start+1,end-1))
 EOF
+let b:lint_count +=1
 endfunction
 
 let b:showing_message = 0

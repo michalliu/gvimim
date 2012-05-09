@@ -29,7 +29,7 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 请参阅misc/docs目录，以获得这些插件的详细文档。
 
-1. jsflakes.vim
+1. jsflakes
 
     javascript静态语法检查与运行器
     

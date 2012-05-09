@@ -10,12 +10,12 @@ else
     let b:did_jsflakes_plugin = 1
 endif
 
-if !exists("b:did_jsruntime_plugin")
+if !exists("g:loaded_jsruntime")
     echoerr('jsruntime.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
     finish
 endif
 
-if !exists("b:did_jsoncodecs_plugin")
+if !exists("g:loaded_jsoncodecs")
     echoerr('jsoncodecs.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
     finish
 endif
@@ -107,7 +107,7 @@ if !exists(":JSHintUpdate")
 endif
 
 " jshint clear
-if !exists('s:JSHintClear')
+if !exists('*s:JSHintClear')
     function s:JSHintClear()
       " Delete previous matches
       let s:matches = getmatches()

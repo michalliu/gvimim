@@ -4,8 +4,9 @@
 "              http://www.ietf.org/rfc/rfc4627.txt?number=4627
 " Version: 1.0
 
+let g:loaded_jsoncodecs = 1
+
 if exists("b:did_jsoncodecs_plugin")
-	let b:did_jsoncodecs_plugin = 0
     finish
 else
 	let b:did_jsoncodecs_plugin = 1

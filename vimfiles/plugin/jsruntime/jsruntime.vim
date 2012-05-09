@@ -3,8 +3,9 @@
 "
 " Version: 1.0
 
+let g:loaded_jsruntime = 1
+
 if exists("b:did_jsruntime_plugin")
-    let b:did_jsruntime_plugin = 0
     finish
 else
     let b:did_jsruntime_plugin = 1

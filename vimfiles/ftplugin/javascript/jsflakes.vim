@@ -1,5 +1,6 @@
 " Maintainer: yf liu <sophia.smth@gmail.com>
 " Requires: jsruntime http://www.vim.org/scripts/script.php?script_id=4050
+"           jsoncodecs
 " Description: javascript lint tool on the fly
 " Version: 1.0
 "
@@ -9,8 +10,13 @@ else
     let b:did_jsflakes_plugin = 1
 endif
 
-if !g:loaded_jsruntime
+if !exists("b:did_jsruntime_plugin")
     echoerr('jsruntime.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
+    finish
+endif
+
+if !exists("b:did_jsoncodecs_plugin")
+    echoerr('jsoncodecs.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
     finish
 endif
 
@@ -133,9 +139,9 @@ if !exists('*s:JSHint')
 
         " jshint context created
         if s:did_jshint_context
-            let l:js = ""
+            let js = ""
         else
-            let l:js = s:jshint_context
+            let js = s:jshint_context
         endif
 
         if a:clear
@@ -144,41 +150,39 @@ if !exists('*s:JSHint')
 
         " Detect line range
         if !exists("a:1")
-            let l:startline=1
+            let startline=1
         else 
-            let l:startline=a:1
+            let startline=a:1
         endif
 
         if !exists("a:2")
-            let l:endline='$'
+            let endline='$'
         else 
-            let l:endline=a:2
+            let endline=a:2
         endif
 
-        " extract the code and generate mutiline string literal in javascript
-        " let me know if you have better idea sophia.smth@gmail.com
-        let l:lintscript = join(s:jshintrc + getline(l:startline, l:endline), "\\n\\\n") . "\\\n"
-        let l:js = l:js . printf(s:jshint_run,printf("\"%s\"",escape(l:lintscript,'"')))
+		let lintscript = s:jshintrc + getline(startline, endline)
+		let js = js . printf(s:jshint_run,b:json_dump(lintscript))
 
         " printout scripts to be eval for debug
-        " echo l:js
-		" call writefile(l:js,'test.txt','b')
-        let l:jshint_output = b:jsruntimeEvalScript(l:js)
-
-        for error in split(l:jshint_output, "\n")
+        " echo js
+		" call writefile([js],'debug.txt','b')
+        let jshint_output = b:jsruntimeEvalScript(js)
+		" echo jshint_output
+        for error in split(jshint_output, "\n")
             " Match {line}:{char}:{message}
-            let l:parts = matchlist(error, "\\(\\d\\+\\):\\(\\d\\+\\):\\(.*\\)")
-            if !empty(l:parts)
-                let l:line = l:parts[1] + (l:startline - 1 - len(s:jshintrc)) " Get line relative to selection
+            let parts = matchlist(error, "\\(\\d\\+\\):\\(\\d\\+\\):\\(.*\\)")
+            if !empty(parts)
+                let line = parts[1] + (startline - 1 - len(s:jshintrc)) " Get line relative to selection
                  " Store the error for an error under the cursor
-                let l:matchDict = {}
-                let l:matchDict['lineNum'] = l:line
-                let l:matchDict['message'] = l:parts[3]
+                let matchDict = {}
+                let matchDict['lineNum'] = line
+                let matchDict['message'] = parts[3]
                 if !exists('s:matchedlines')
                     let s:matchedlines = {}
                 endif
-                let s:matchedlines[l:line] = l:matchDict
-                call matchadd('JSHintError', '\%' . l:line . 'l\S.*\(\S\|$\)')
+                let s:matchedlines[line] = matchDict
+                call matchadd('JSHintError', '\%' . line . 'l\S.*\(\S\|$\)')
             endif
         endfor
     endfunction
@@ -203,16 +207,16 @@ endif
 " get hint message
 if !exists("*s:GetJSHintMessage")
     function s:GetJSHintMessage()
-        let l:cursorPos = getpos(".")
+        let cursorPos = getpos(".")
 
         " Bail if RunJSHint hasn't been called yet
         if !exists('s:matchedlines')
             return
         endif
 
-        if has_key(s:matchedlines, l:cursorPos[1])
-            let l:jshintMatch = get(s:matchedlines, l:cursorPos[1])
-            call s:WideMsg(l:jshintMatch['message'])
+        if has_key(s:matchedlines, cursorPos[1])
+            let jshintMatch = get(s:matchedlines, cursorPos[1])
+            call s:WideMsg(jshintMatch['message'])
             let b:showing_message = 1
             return
         endif
@@ -255,16 +259,16 @@ if !exists("*s:RunJavascript")
 	function s:RunJavascript(startline,...)
         " Detect range
         if a:startline < 1
-            let l:startline=1
+            let startline=1
         else 
-            let l:startline=a:startline
+            let startline=a:startline
         endif
         if !exists("a:1")
-            let l:endline='$'
+            let endline='$'
         else 
-            let l:endline=a:1
+            let endline=a:1
         endif
-		call b:jsruntimeEvalScript(join(getline(l:startline, l:endline),"\n"))
+		call b:jsruntimeEvalScript(join(getline(startline, endline),"\n"))
 	endfunction
 endif
 
@@ -285,16 +289,16 @@ if exists("*b:jsruntimeEvalScriptInBrowserContext") && &ft == 'html'
 		function s:RunJavascriptInBrowserContext(startline,...)
             " Detect range
             if a:startline < 1
-                let l:startline=1
+                let startline=1
             else 
-                let l:startline=a:startline
+                let startline=a:startline
             endif
             if !exists("a:1")
-                let l:endline='$'
+                let endline='$'
             else 
-                let l:endline=a:1
+                let endline=a:1
             endif
-			call b:jsruntimeEvalScriptInBrowserContext(join(getline(l:startline, l:endline),"\n"))
+			call b:jsruntimeEvalScriptInBrowserContext(join(getline(startline, endline),"\n"))
 		endfunction
 	endif
 
@@ -308,5 +312,3 @@ if exists("*b:jsruntimeEvalScriptInBrowserContext") && &ft == 'html'
     endif
 
 endif
-
-

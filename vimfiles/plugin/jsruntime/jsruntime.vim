@@ -4,6 +4,7 @@
 " Version: 1.0
 
 if exists("b:did_jsruntime_plugin")
+    let b:did_jsruntime_plugin = 0
     finish
 else
     let b:did_jsruntime_plugin = 1
@@ -108,15 +109,15 @@ endif
 
 " expose to other plugin to know
 if s:js_interpreter == 'pyv8'
-	let b:jsruntime_support_living_context = 1
+	let g:jsruntime_support_living_context = 1
 else
-	let b:jsruntime_support_living_context = 0
+	let g:jsruntime_support_living_context = 0
 endif
 
 " let s:js_interpreter='cscript /NoLogo'
 " let s:runjs_ext='wsf'
 "
-if !exists('b:jsruntimeEvalScript')
+if !exists('*b:jsruntimeEvalScript')
     function b:jsruntimeEvalScript(script,...)
         let l:result=''
         if !exists("a:1")
@@ -125,7 +126,7 @@ if !exists('b:jsruntimeEvalScript')
             let l:renew_context = a:1
         endif
 
-		if !b:jsruntime_support_living_context
+		if !g:jsruntime_support_living_context
             let l:renew_context = 0
 		endif
 
@@ -148,12 +149,15 @@ EOF
         else
             let s:cmd = s:js_interpreter . ' "' . s:install_dir . '\jsrunner\runjs.' . s:runjs_ext . '"'
             let l:result = system(s:cmd, a:script)
+            if v:shell_error
+               echoerr 'jsruntime is not working properly. plz visit http://www.vim.org/scripts/script.php?script_id=4050 for more info'
+            end
         endif
         return l:result
     endfunction
 endif
 
-if !exists('b:jsruntimeEvalScriptInBrowserContext') && s:js_interpreter == 'pyv8'
+if !exists('*b:jsruntimeEvalScriptInBrowserContext') && s:js_interpreter == 'pyv8'
     function b:jsruntimeEvalScriptInBrowserContext(script)
         python << EOF
 NewTab=BrowserTab(url='http://localhost:8080/path?query=key#frag',html=vim.eval("a:script"))
@@ -161,3 +165,4 @@ NewTab.win.fireOnloadEvents()
 EOF
     endfunction
 endif
+

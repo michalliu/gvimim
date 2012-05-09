@@ -29,7 +29,7 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 请参阅misc/docs目录，以获得这些插件的详细文档。
 
-1. jshint,jsruntime
+1. jsflakes.vim
 
     javascript静态语法检查与运行器
     
@@ -38,6 +38,8 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
         :RunJSBlock 运行部分javascript代码，如:RunJSBlock 1,3 运行1-3行的代码
         :RunHtml 运行Html代码
         :RunHtmlBlock 运行部分Html代码
+        :cl 错误列表
+        :cope 打开QuickFix
    
 2. [pyflakes](http://www.vim.org/scripts/script.php?script_id=2441)
 

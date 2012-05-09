@@ -130,8 +130,8 @@ let g:jshint_rcfile = s:appdata.'\jshint\.jshintrc'
 let g:template_path = s:appdata.'\load_template\templates\'
 
 " html文件自动加载jsruntime与jshint插件
-au FileType html source $VIM\vimfiles\ftplugin\javascript\jsruntime.vim
-au FileType html source $VIM\vimfiles\ftplugin\javascript\jshint.vim
+" au FileType html source $VIM\vimfiles\ftplugin\javascript\jsruntime.vim
+au FileType html source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim
 
 " javascript字典
 au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict

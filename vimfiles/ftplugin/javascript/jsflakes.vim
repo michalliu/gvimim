@@ -95,8 +95,6 @@ else
     au CursorMoved <buffer> call s:GetJSHintMessage()
 endif
 
-au BufLeave <buffer> call s:JSHintClear()
-
 " call jshint while content modified
 noremap <buffer><silent> dd dd:JSHintUpdate<CR>
 noremap <buffer><silent> dw dw:JSHintUpdate<CR>
@@ -119,6 +117,7 @@ if !exists('s:JSHintClear')
         endif
       endfor
       let s:matchedlines = {}
+	  call setqflist([])
     endfunction
 endif
 
@@ -161,6 +160,10 @@ if !exists('*s:JSHint')
             let endline=a:2
         endif
 
+
+		" Store quickfix list
+		let qf_list = []
+
 		let lintscript = s:jshintrc + getline(startline, endline)
 		let js = js . printf(s:jshint_run,b:json_dump(lintscript))
 
@@ -168,23 +171,45 @@ if !exists('*s:JSHint')
         " echo js
 		" call writefile([js],'debug.txt','b')
         let jshint_output = b:jsruntimeEvalScript(js)
-		" echo jshint_output
         for error in split(jshint_output, "\n")
             " Match {line}:{char}:{message}
-            let parts = matchlist(error, "\\(\\d\\+\\):\\(\\d\\+\\):\\(.*\\)")
+            let parts = matchlist(error, '\v(\d+):(\d+):([A-Z]+):(.*)')
             if !empty(parts)
                 let line = parts[1] + (startline - 1 - len(s:jshintrc)) " Get line relative to selection
-                 " Store the error for an error under the cursor
-                let matchDict = {}
-                let matchDict['lineNum'] = line
-                let matchDict['message'] = parts[3]
-                if !exists('s:matchedlines')
-                    let s:matchedlines = {}
-                endif
-                let s:matchedlines[line] = matchDict
-                call matchadd('JSHintError', '\%' . line . 'l\S.*\(\S\|$\)')
+				let errorMessage = parts[4]
+
+				if line < 1
+					echoerr 'jsflakes found error in your jshintrc <' . s:rc_file .'>, line ' . parts[1] . ', character ' . parts[2] . (errorMessage == '' ? '' : ': ' . errorMessage) . ' plz visit http://www.jshint.com/options/ for more info'
+				else
+                    " Store the error for an error under the cursor
+                    let matchDict = {}
+                    let matchDict['lineNum'] = line
+                    let matchDict['message'] = errorMessage
+                    if !exists('s:matchedlines')
+                        let s:matchedlines = {}
+                    endif
+                    let s:matchedlines[line] = matchDict
+					if parts[3] == 'ERROR'
+					    let errorType = 'E'
+					else
+						let errorType = 'W'
+					endif
+                    call matchadd('JSHintError', '\%' . line . 'l\S.*\(\S\|$\)')
+
+			    	" Store the error for quickfix window
+			    	let qf = {}
+			    	let qf.bufnr = bufnr('%')
+			    	let qf.filename = expand('%')
+			    	let qf.lnum = line
+			    	let qf.text = errorMessage
+			    	let qf.type = errorType
+
+					" Add line to quickfix list
+					call add(qf_list, qf)
+				endif
             endif
         endfor
+		call setqflist(qf_list, 'a')
     endfunction
 endif
 

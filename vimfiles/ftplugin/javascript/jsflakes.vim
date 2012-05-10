@@ -16,7 +16,7 @@ if !exists("g:loaded_jsruntime")
 endif
 
 if !exists("g:loaded_jsoncodecs")
-    echoerr('jsoncodecs.vim is required, plz visit https://github.com/michalliu/jsoncodecs.vim')
+    echoerr('jsoncodecs.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4056')
     finish
 endif
 

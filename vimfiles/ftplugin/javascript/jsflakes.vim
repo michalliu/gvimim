@@ -16,7 +16,7 @@ if !exists("g:loaded_jsruntime")
 endif
 
 if !exists("g:loaded_jsoncodecs")
-    echoerr('jsoncodecs.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
+    echoerr('jsoncodecs.vim is required, plz visit https://github.com/michalliu/jsoncodecs.vim')
     finish
 endif
 
@@ -165,7 +165,7 @@ if !exists('*s:JSHint')
 		let qf_list = []
 
 		let lintscript = s:jshintrc + getline(startline, endline)
-		let js = js . printf(s:jshint_run,b:json_dump(lintscript))
+		let js = js . printf(s:jshint_run,b:json_dump_string(lintscript))
 
         " printout scripts to be eval for debug
         " echo js

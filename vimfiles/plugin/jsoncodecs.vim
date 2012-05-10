@@ -37,10 +37,10 @@ if !exists("*s:json_encode_basestring")
 	endfunction
 endif
 
-if !exists("*b:json_dump")
-	function b:json_dump(lines)
+if !exists("*b:json_dump_string")
+	function b:json_dump_string(linelist)
 		let json=[]
-		for line in a:lines
+		for line in a:linelist
 			call add(json, s:json_encode_basestring(line))
 		endfor
 		return printf('"%s"', join(json,'\n').'\n')
@@ -49,6 +49,6 @@ endif
 
 if !exists('*b:json_dumplines')
 	function b:json_dumplines() range
-		echo b:json_dump(getline(a:firstline,a:lastline))
+		echo b:json_dump_string(getline(a:firstline,a:lastline))
 	endfunction
 endif

@@ -44,6 +44,6 @@ var readSTDIN = function() {
 };
 
 var body = readSTDIN() || arguments[0];
-eval(body);
+console.log(eval(body));
 </script>
 </job>

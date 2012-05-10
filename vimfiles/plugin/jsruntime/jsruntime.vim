@@ -115,6 +115,7 @@ else
 	let g:jsruntime_support_living_context = 0
 endif
 
+" let g:jsruntime_support_living_context = 0
 " let s:js_interpreter='cscript /NoLogo'
 " let s:runjs_ext='wsf'
 "

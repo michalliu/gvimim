@@ -5,11 +5,12 @@ if (typeof require != 'undefined') {
 }
 
 var alert = function (msg) {
-    print(msg); 
+    print('ALERT: ' + msg); 
 };
 
 var console = {
     _out: function (obj, name) {
+        name = name || '';
         print(name + obj);
     },
     log: function (obj) {
@@ -92,5 +93,5 @@ var readSTDIN = (function() {
 })();
 
 readSTDIN(function(body) {
-	eval(body);
+	console.log(eval(body));
 });

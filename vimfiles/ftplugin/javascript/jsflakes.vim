@@ -128,7 +128,7 @@ if !exists('*s:JSHint')
         highlight link JSHintError SpellBad
 
         if !exists('s:did_jshint_context')
-            if b:jsruntime_support_living_context
+            if g:jsruntime_support_living_context
                 call b:jsruntimeEvalScript(s:jshint_context,0)
                 let s:did_jshint_context = 1
             else

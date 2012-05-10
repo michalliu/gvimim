@@ -110,9 +110,9 @@ endif
 
 " expose to other plugin to know
 if s:js_interpreter == 'pyv8'
-	let b:jsruntime_support_living_context = 1
+	let g:jsruntime_support_living_context = 1
 else
-	let b:jsruntime_support_living_context = 0
+	let g:jsruntime_support_living_context = 0
 endif
 
 " let s:js_interpreter='cscript /NoLogo'
@@ -127,7 +127,7 @@ if !exists('*b:jsruntimeEvalScript')
             let l:renew_context = a:1
         endif
 
-		if !b:jsruntime_support_living_context
+		if !g:jsruntime_support_living_context
             let l:renew_context = 0
 		endif
 

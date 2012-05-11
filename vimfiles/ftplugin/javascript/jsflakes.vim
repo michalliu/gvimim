@@ -1,6 +1,6 @@
 " Maintainer: yf liu <sophia.smth@gmail.com>
 " Requires: jsruntime http://www.vim.org/scripts/script.php?script_id=4050
-"           jsoncodecs
+"           jsoncodecs http://www.vim.org/scripts/script.php?script_id=4056
 " Description: javascript lint tool on the fly
 " Version: 1.0
 "
@@ -63,15 +63,15 @@ EOF
 endif
 
 let s:install_dir = expand("<sfile>:p:h")
-let s:jshint_context = join(readfile(s:install_dir.'\jshint.js'), "\n")
-let s:jshint_run = join(readfile(s:install_dir.'\jshint_run.js'), "\n")
+let s:jshint_context = join(readfile(s:install_dir.'/jshint.js'), "\n")
+let s:jshint_run = join(readfile(s:install_dir.'/jshint_run.js'), "\n")
 
 " a flag to know is jshint message is shown
 let b:showing_message = 0
 
 " load option file for jshint
 if !exists("g:jshint_rcfile")
-    let s:rc_file = expand('~\.jshintrc')
+    let s:rc_file = expand('~/.jshintrc')
 else
     let s:rc_file = g:jshint_rcfile
 endif

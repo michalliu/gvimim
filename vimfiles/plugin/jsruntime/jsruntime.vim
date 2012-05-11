@@ -13,14 +13,25 @@ endif
 
 let s:install_dir = expand("<sfile>:p:h")
 
+" See if we have python and PyV8 is installed
+let s:python_support = 0
+
 if has('python')
     python << EOF
-import vim
+import sys,vim
 sys.path.insert(0, vim.eval('s:install_dir'))
 
-# PyV8 js runtime
-from PyV8.PyV8 import *
+try:
+  # PyV8 js runtime
+  from PyV8.PyV8 import *
+  vim.command('let s:python_support = 1')
+except:
+  pass
+EOF
+endif
 
+if s:python_support
+    python << EOF
 class VimJavascriptConsole(JSClass):
 
     def __init__(self):
@@ -149,7 +160,7 @@ else:
 vim.command('let l:result=%s' % json.dumps(ret))
 EOF
         else
-            let s:cmd = s:js_interpreter . ' "' . s:install_dir . '\jsrunner\runjs.' . s:runjs_ext . '"'
+            let s:cmd = s:js_interpreter . ' "' . s:install_dir . '/jsrunner/runjs.' . s:runjs_ext . '"'
             let l:result = system(s:cmd, a:script)
             if v:shell_error
                echoerr 'jsruntime is not working properly. plz visit http://www.vim.org/scripts/script.php?script_id=4050 for more info'

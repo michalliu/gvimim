@@ -22,8 +22,8 @@ import sys,vim
 sys.path.insert(0, vim.eval('s:install_dir'))
 
 try:
-  # PyV8 js runtime
-  from PyV8.PyV8 import *
+  # PyV8 js runtime use minimal namespace to avoid conflict with other plugin
+  from PyV8 import PyV8
   vim.command('let s:python_support = 1')
 except:
   pass
@@ -32,7 +32,7 @@ endif
 
 if s:python_support
     python << EOF
-class VimJavascriptConsole(JSClass):
+class VimJavascriptConsole(PyV8.JSClass):
 
     def __init__(self):
         pass
@@ -55,7 +55,7 @@ class VimJavascriptConsole(JSClass):
     def error(self,obj):
         return self._out(obj,name="ERROR: ")
 
-class VimJavascriptRuntime(JSClass):
+class VimJavascriptRuntime(PyV8.JSClass):
 
     def __init__(self):
         self._console = VimJavascriptConsole()
@@ -71,7 +71,7 @@ class VimJavascriptRuntime(JSClass):
     @property
     def context(self):
         if not hasattr(self,"_context"):
-            self._context = JSContext(self)
+            self._context = PyV8.JSContext(self)
             self._context.enter()
         return self._context
 

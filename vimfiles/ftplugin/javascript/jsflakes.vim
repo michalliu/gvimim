@@ -6,12 +6,24 @@
 "
 if exists("b:did_jsflakes_plugin")
     finish
-else
-    let b:did_jsflakes_plugin = 1
 endif
+
+" fail silently
+if exists("g:disabled_jsflakes_plugin") && g:disabled_jsflakes_plugin 
+    finish
+endif
+
+let b:did_jsflakes_plugin = 1
 
 if !exists("g:loaded_jsruntime")
     echoerr('jsruntime.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
+    finish
+endif
+
+if !g:loaded_jsruntime
+    echoerr("jsflakes disabled automaticly, because jsruntime.vim report not working properly")
+    " set a flag to disable jsfalkes
+    let g:disabled_jsflakes_plugin = 1
     finish
 endif
 

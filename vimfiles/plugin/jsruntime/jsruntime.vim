@@ -1,16 +1,21 @@
-" Maintainer: michal.liu <sophia.smth@gmail.com>
+" Maintainer: yf.liu <sophia.smth@gmail.com>
 " Description: javascript runtime in vim powered by google V8 and PyV8 http://code.google.com/p/pyv8/
 "
 " Version: 1.0
 
-let g:loaded_jsruntime = 1
-
 if exists("b:did_jsruntime_plugin")
     finish
-else
-    let b:did_jsruntime_plugin = 1
 endif
 
+let b:did_jsruntime_plugin = 1
+
+" jsruntime status
+" not exists jsruntime not loaded
+" 0 loaded but not working
+" 1 everything is ok
+let g:loaded_jsruntime = 0
+
+" plugin path
 let s:install_dir = expand("<sfile>:p:h")
 
 " See if we have python and PyV8 is installed
@@ -18,15 +23,23 @@ let s:python_support = 0
 
 if has('python')
     python << EOF
-import sys,vim
+import sys,os,vim
+#if sys.version_info[:2] < (2,7):
+#    vim.command("jsruntime.vim complains \"Vim must be compiled with Python 2.7, you have %s\"" % sys.version)
 sys.path.insert(0, vim.eval('s:install_dir'))
 
 try:
   # PyV8 js runtime use minimal namespace to avoid conflict with other plugin
   from PyV8 import PyV8
   vim.command('let s:python_support = 1')
-except:
-  pass
+except ImportError,e:
+    err = str(e)
+    if err.startswith("libboost_python.so.1.50.0"):
+        print "Hint:" 
+        print "(PyV8) - A Javascript interpreter can be enabled by execute the follwing command"
+        print " "
+        print "sudo ln -s %s /usr/lib" % os.path.join(vim.eval("s:install_dir"),'PyV8','libboost_python.so.1.50.0')
+        print " "
 EOF
 endif
 
@@ -38,7 +51,7 @@ class VimJavascriptConsole(PyV8.JSClass):
         pass
 
     def _out(self,obj,name=''):
-        print '%s%s\n' % (name,obj)
+        print '%s%s' % (name,obj)
 
     def log(self,obj):
         return self._out(obj)
@@ -85,20 +98,14 @@ class VimJavascriptRuntime(PyV8.JSClass):
 jsRuntimeVim = VimJavascriptRuntime()
 
 # PyV8 js runtime in browser context
-from PyWebBrowser import w3c
-from PyWebBrowser.browser import *
-
 # Think a tab in a real browser
 class BrowserTab(object):
     def __init__(self,url='about:blank',html='<html><head></head><body><p></p></body></html>'):
-        self.doc = w3c.parseString(html)
-        self.win = HtmlWindow(url,  self.doc)
+        self.doc = PyWebBrowser.w3c.parseString(html)
+        self.win = PyWebBrowser.browser.HtmlWindow(url,  self.doc)
 EOF
-
     let s:js_interpreter = 'pyv8'
-
 else
-
     if has('win32')
         let s:js_interpreter='cscript /NoLogo'
         let s:runjs_ext='wsf'
@@ -113,11 +120,14 @@ else
         elseif executable('js')
             let s:js_interpreter = 'js'
         else
-            echoerr('No JS interpreter found. Checked for jsc, js (spidermonkey), and node')
+            echoerr("jsruntime.vim complains Not found a valid JS interpreter. Checked for jsc, js (spidermonkey), and node")
+            finish
         endif
     endif
-
 endif
+
+" no error
+let g:loaded_jsruntime = 1
 
 " expose to other plugin to know
 if s:js_interpreter == 'pyv8'
@@ -178,4 +188,3 @@ NewTab.win.fireOnloadEvents()
 EOF
     endfunction
 endif
-

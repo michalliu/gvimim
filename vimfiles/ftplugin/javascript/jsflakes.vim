@@ -94,6 +94,9 @@ else
   let s:jshintrc = []
 end
 
+" :help augroup
+" :help autocmd-buflocal
+augroup jsflakes
 if &ft == 'html'
     au BufEnter <buffer> call s:htmlJSHint()
     au InsertLeave <buffer> call s:htmlJSHint()
@@ -106,6 +109,7 @@ else
     au BufWritePost <buffer> call s:JSHint(1)
     au CursorMoved <buffer> call s:GetJSHintMessage()
 endif
+augroup END
 
 " call jshint while content modified
 noremap <buffer><silent> dd dd:JSHintUpdate<CR>
@@ -232,7 +236,12 @@ if !exists("*s:htmlJSHint")
     python << EOF
 import vim
 parser = htmlParser()
-parser.feed(vim.eval("join(getline(1,'$'),'\n')"))
+try:
+    parser.feed(vim.eval("join(getline(1,'$'),'\n')"))
+except Exception,e:
+    print "Hint: jsflakes.vim stops automaticlly, %s" % e
+    vim.command("au! jsflakes")
+	
 # start <script> end </script>
 if parser.lintableScripts:
     for start,end in parser.lintableScripts:

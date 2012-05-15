@@ -45,6 +45,7 @@ endif
 
 if s:python_support
     python << EOF
+import re
 class VimJavascriptConsole(PyV8.JSClass):
 
     def __init__(self):
@@ -89,8 +90,10 @@ class VimJavascriptRuntime(PyV8.JSClass):
         return self._context
 
     def evalScript(self, script):
-        if isinstance(script,unicode):
-            script = script.encode('utf-8')
+        if not isinstance(script, unicode):
+            script = unicode(script, vim.eval("&encoding"))
+        script = re.sub(ur'[^\u0000-\u0127]',lambda matched : matched.group().encode('unicode_escape'),script)
+        #script = script.encode("utf-8")
         with self.context as ctxt:
             return ctxt.eval(script)
 
@@ -99,8 +102,13 @@ jsRuntimeVim = VimJavascriptRuntime()
 
 # PyV8 js runtime in browser context
 # Think a tab in a real browser
+import PyWebBrowser.w3c
+import PyWebBrowser.browser
 class BrowserTab(object):
     def __init__(self,url='about:blank',html='<html><head></head><body><p></p></body></html>'):
+        if not isinstance(html, unicode):
+            html = unicode(html, vim.eval("&encoding"))
+        html = html.encode("utf-8")
         self.doc = PyWebBrowser.w3c.parseString(html)
         self.win = PyWebBrowser.browser.HtmlWindow(url,  self.doc)
 EOF
@@ -131,9 +139,9 @@ let g:loaded_jsruntime = 1
 
 " expose to other plugin to know
 if s:js_interpreter == 'pyv8'
-	let g:jsruntime_support_living_context = 1
+    let g:jsruntime_support_living_context = 1
 else
-	let g:jsruntime_support_living_context = 0
+    let g:jsruntime_support_living_context = 0
 endif
 
 " let g:jsruntime_support_living_context = 0
@@ -149,11 +157,11 @@ if !exists('*b:jsruntimeEvalScript')
             let l:renew_context = a:1
         endif
 
-		if !g:jsruntime_support_living_context
+        if !g:jsruntime_support_living_context
             let l:renew_context = 0
-		endif
+        endif
 
-		" pyv8 eval
+        " pyv8 eval
         if s:js_interpreter == 'pyv8'
     python << EOF
 import vim,json
@@ -161,7 +169,11 @@ if int(vim.eval('l:renew_context')) and jsRuntimeVim:
     #print 'context cleared'
     jsRuntimeVim.context.leave()
     jsRuntimeVim = VimJavascriptRuntime()
-ret = jsRuntimeVim.evalScript(vim.eval('a:script'));
+try:
+    ret = jsRuntimeVim.evalScript(vim.eval('a:script'));
+except Exception,e:
+    print 'jsruntime.vim complains, %s' % e
+    ret = None
 if not ret:
     ret = 'undefined'
 else:

@@ -5,6 +5,7 @@ from urlparse import urlparse
 from email.utils import formatdate
 from PyV8 import PyV8
 import w3c
+import re
 
 import BeautifulSoup
 
@@ -510,6 +511,7 @@ class HtmlWindow(PyV8.JSClass):
 
     def evalScript(self, script, tag=None):
         if isinstance(script, unicode):
+            script = re.sub(ur'[^\u0000-\u0127]',lambda matched : matched.group().encode('unicode_escape'),script)
             script = script.encode('utf-8')
 
         if tag:

@@ -92,8 +92,8 @@ class VimJavascriptRuntime(PyV8.JSClass):
     def evalScript(self, script):
         if not isinstance(script, unicode):
             script = unicode(script, vim.eval("&encoding"))
-        script = re.sub(ur'[^\u0000-\u0127]',lambda matched : matched.group().encode('unicode_escape'),script)
-        #script = script.encode("utf-8")
+        # pyv8 likes unicode
+        # script = script.encode("utf-8")
         with self.context as ctxt:
             return ctxt.eval(script)
 
@@ -108,7 +108,6 @@ class BrowserTab(object):
     def __init__(self,url='about:blank',html='<html><head></head><body><p></p></body></html>'):
         if not isinstance(html, unicode):
             html = unicode(html, vim.eval("&encoding"))
-        html = html.encode("utf-8")
         self.doc = PyWebBrowser.w3c.parseString(html)
         self.win = PyWebBrowser.browser.HtmlWindow(url,  self.doc)
 EOF

@@ -96,7 +96,7 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 11. [matchit](http://www.vim.org/scripts/script.php?script_id=39),[python\_match](http://www.vim.org/scripts/script.php?script_id=386)
      
-    这个插件可以扩展Vim的%键的功能，使之可以匹配HTML中的开始和结束标签，可以方便的在python的if else中使用__%__键快速跳转
+    这个插件扩展了 **%** 键的功能，使之可以智能匹配html或python的语句块
 
 特别感谢
 -----------------------

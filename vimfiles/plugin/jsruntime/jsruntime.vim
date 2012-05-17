@@ -147,6 +147,9 @@ endif
 " let s:js_interpreter='cscript /NoLogo'
 " let s:runjs_ext='wsf'
 "
+" something you need to know as a vim scripter
+" :help CR-used-for-NL
+" http://vim.wikia.com/wiki/Newlines_and_nulls_in_Vim_script
 if !exists('*b:jsruntimeEvalScript')
     function b:jsruntimeEvalScript(script,...)
         let l:result=''
@@ -169,7 +172,7 @@ if int(vim.eval('l:renew_context')) and jsRuntimeVim:
     jsRuntimeVim.context.leave()
     jsRuntimeVim = VimJavascriptRuntime()
 try:
-    ret = jsRuntimeVim.evalScript(vim.eval('a:script'));
+    ret = jsRuntimeVim.evalScript(vim.eval('a:script'))
 except Exception,e:
     print 'jsruntime.vim complains, %s' % e
     ret = None

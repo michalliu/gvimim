@@ -81,9 +81,9 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
         <Space> 放下
         <Esc>获取<q> 退出
     
-9. 增加9种额外的优秀配色方案
+9. 增加10种额外的优秀配色方案
 
-    分别是_zenburn;ir_black;pyte;railscasts;rdark;tango2;twilight;_
+    分别是_zenburn;ir_black;pyte;railscasts;rdark;tango2;twilight;borland;_
     
         :color {name}
         
@@ -93,6 +93,10 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
     
         :SetAlpha 200 窗口透明度为200
         :SetTopMost 1 窗口总在最前
+
+11. [matchit](http://www.vim.org/scripts/script.php?script_id=39),[python\_match](http://www.vim.org/scripts/script.php?script_id=386)
+     
+    这个插件可以扩展Vim的%键的功能，使之可以匹配HTML中的开始和结束标签，可以方便的在python的if else中使用__%__键快速跳转
 
 特别感谢
 -----------------------

@@ -98,6 +98,10 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
      
     这个插件扩展了 **%** 键的功能，使之可以智能匹配html或python的语句块
 
+12. [autoclose](http://www.vim.org/scripts/script.php?script_id=2009)
+
+    提供括号自动补全功能
+
 特别感谢
 -----------------------
 vim中文文档 <http://vimcdoc.sourceforge.net/>

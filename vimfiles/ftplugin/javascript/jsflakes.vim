@@ -133,7 +133,7 @@ if !exists('*s:JSHintClear')
         endif
       endfor
       let s:matchedlines = {}
-	  call setqflist([])
+	  call setloclist(0, [])
     endfunction
 endif
 
@@ -177,8 +177,8 @@ if !exists('*s:JSHint')
         endif
 
 
-		" Store quickfix list
-		let qf_list = []
+		" Store error list
+		let error_list = []
 
 		let lintscript = s:jshintrc + getline(startline, endline)
 		let js = js . printf(s:jshint_run,b:json_dump_string(lintscript))
@@ -212,20 +212,20 @@ if !exists('*s:JSHint')
 					endif
                     call matchadd('JSHintError', '\%' . line . 'l\S.*\(\S\|$\)')
 
-			    	" Store the error for quickfix window
-			    	let qf = {}
-			    	let qf.bufnr = bufnr('%')
-			    	let qf.filename = expand('%')
-			    	let qf.lnum = line
-			    	let qf.text = errorMessage
-			    	let qf.type = errorType
+			    	" Store the error for local window
+			    	let err = {}
+			    	let err.bufnr = bufnr('%')
+			    	let err.filename = expand('%')
+			    	let err.lnum = line
+			    	let err.text = errorMessage
+			    	let err.type = errorType
 
-					" Add line to quickfix list
-					call add(qf_list, qf)
+					" Add line to error list
+					call add(error_list, err)
 				endif
             endif
         endfor
-		call setqflist(qf_list, 'a')
+		call setloclist(0, error_list, 'a')
     endfunction
 endif
 

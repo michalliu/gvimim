@@ -111,6 +111,8 @@ else
 endif
 augroup END
 
+au BufUnload,BufHidden <buffer> call s:JSHintClear()
+
 " call jshint while content modified
 noremap <buffer><silent> dd dd:JSHintUpdate<CR>
 noremap <buffer><silent> dw dw:JSHintUpdate<CR>

@@ -147,7 +147,20 @@ au FileType python set shiftwidth=4
 
 " 常用快捷键
 " F2取消高亮
-nmap <F2> :nohlsearch<CR>
+nmap <F2> :nohlsearch<CR>:echo <CR>
 
 " F3删掉windows换行符^M
-nmap <F3> :%s/\r\(\n\)/\1/g<CR>
+nmap <F3> :%s/\r\(\n\)/\1/g<CR>:echo <CR>
+
+" F4高亮当前光标所在列
+nmap <F4> :call SetColorColumn()<CR>:echo <CR>
+function! SetColorColumn()
+	let col = virtcol(".")
+	let ccs = split(&cc,',')
+	if count(ccs, string(col)) <= 0
+		let op = "+"
+	else
+		let op = "-"
+	endif
+	exec "set cc".op."=".col
+endfunction

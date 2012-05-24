@@ -32,7 +32,7 @@ if !exists("g:loaded_jsoncodecs")
     finish
 endif
 
-if &ft == 'html'
+if &ft == 'html' || &ft == 'xhtml'
     if has('python')
     python << EOF
 import vim
@@ -81,6 +81,9 @@ let s:jshint_run = join(readfile(s:install_dir.'/jshint_run.js'), "\n")
 " a flag to know is jshint message is shown
 let b:showing_message = 0
 
+" a flag to know whether automatic code lint is enabled
+let b:jsflakes_autolint = 1
+
 " load option file for jshint
 if !exists("g:jshint_rcfile")
     let s:rc_file = expand('~/.jshintrc')
@@ -93,36 +96,6 @@ if filereadable(s:rc_file)
 else
   let s:jshintrc = []
 end
-
-" :help augroup
-" :help autocmd-buflocal
-augroup jsflakes
-if &ft == 'html'
-    au BufEnter <buffer> call s:htmlJSHint()
-    au InsertLeave <buffer> call s:htmlJSHint()
-    au BufWritePost <buffer> call s:htmlJSHint()
-    au CursorMoved <buffer> call s:GetJSHintMessage()
-else
-    " execute jshint when certain event happens
-    au BufEnter <buffer> call s:JSHint(1)
-    au InsertLeave <buffer> call s:JSHint(1)
-    au BufWritePost <buffer> call s:JSHint(1)
-    au CursorMoved <buffer> call s:GetJSHintMessage()
-endif
-augroup END
-
-au BufUnload,BufHidden <buffer> call s:JSHintClear()
-
-" call jshint while content modified
-noremap <buffer><silent> dd dd:JSHintUpdate<CR>
-noremap <buffer><silent> dw dw:JSHintUpdate<CR>
-noremap <buffer><silent> u u:JSHintUpdate<CR>
-noremap <buffer><silent> <C-R> <C-R>:JSHintUpdate<CR>
-
-" map a command to run jshint
-if !exists(":JSHintUpdate")
-    command JSHintUpdate :call s:JSHintUpdate()
-endif
 
 " jshint clear
 if !exists('*s:JSHintClear')
@@ -301,6 +274,58 @@ if !exists("*s:JSHintUpdate")
     endfunction
 endif
 
+" toggle auto jslint
+if !exists('*s:toggleAutoLint')
+	function s:toggleAutoLint()
+
+		if b:jsflakes_autolint
+
+			call s:JSHintClear()
+
+            augroup jsflakes
+			au!
+            augroup END
+
+            unmap <buffer><silent> dd
+            unmap <buffer><silent> dw
+            unmap <buffer><silent> u
+            unmap <buffer><silent> <C-R>
+
+			echo "jsflakes has disabled autolint"
+
+			let b:jsflakes_autolint = 0
+
+		else
+
+			call s:JSHintUpdate()
+
+            " :help augroup
+            " :help autocmd-buflocal
+            augroup jsflakes
+            au!
+            if &ft == 'html'
+                au BufEnter,InsertLeave,BufWritePost <buffer> call s:htmlJSHint()
+                au CursorMoved <buffer> call s:GetJSHintMessage()
+            else
+                au BufEnter,InsertLeave,BufWritePost <buffer> call s:JSHint(1)
+                au CursorMoved <buffer> call s:GetJSHintMessage()
+            endif
+            augroup END
+
+            " call jshint while content modified
+			" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
+            noremap <buffer><silent> dd dd:JSHintUpdate<CR>
+            noremap <buffer><silent> dw dw:JSHintUpdate<CR>
+            noremap <buffer><silent> u u:JSHintUpdate<CR>
+            noremap <buffer><silent> <C-R> <C-R>:JSHintUpdate<CR>
+
+			let b:jsflakes_autolint = 1
+
+		endif
+
+	endfunction
+endif
+
 " ADD ABILITY TO RUN JAVASCRIPT INSIDE VIM
 " run js inside vim
 if !exists("*s:RunJavascript")
@@ -359,4 +384,27 @@ if exists("*b:jsruntimeEvalScriptInBrowserContext") && &ft == 'html'
         command -nargs=? RunHtmlBlock :call s:RunJavascriptInBrowserContext(<args>)
     endif
 
+endif
+
+" fix issue #3 on github
+au BufUnload,BufHidden <buffer> call s:JSHintClear()
+
+" if autolint is configed to be enabled then enable it
+if b:jsflakes_autolint
+	" default internally disabled, make toggle function works as expected
+	let b:jsflakes_autolint = 0
+    call s:toggleAutoLint()
+endif
+
+" toggle jshint
+nnoremap <silent> <leader>al :call <SID>toggleAutoLint()<cr>
+
+" map a command to run jshint manaually
+if !exists(":JSHintUpdate")
+    command JSHintUpdate :call s:JSHintUpdate()
+endif
+
+" a shorter version
+if !exists(":JSHint")
+    command JSHint :call s:JSHintUpdate()
 endif

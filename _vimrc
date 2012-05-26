@@ -61,8 +61,8 @@ if has("win32")
     " 显示行号
     set nu
 
-	" 不换行
-	"set nowrap
+    " 不换行
+    "set nowrap
 
     " 状态栏不自动消失
     " set laststatus=2
@@ -71,69 +71,70 @@ if has("win32")
     set shiftwidth=4
     set tabstop=4
 
-	" 关闭备份
-	set nobackup
-	set nowritebackup
+    " 关闭备份
+    set nobackup
+    set nowritebackup
 
-	" 移除菜单栏、工具栏和滚动条
-	"set guioptions-=m
-	"set guioptions-=T
-	"set guioptions-=r
-	"set guioptions-=b
-	
-	" 代码折叠 
-	set foldmethod=syntax
+    " 移除菜单栏、工具栏和滚动条
+    "set guioptions-=m
+    "set guioptions-=T
+    "set guioptions-=r
+    "set guioptions-=b
+    
+    " 代码折叠 
+    set foldmethod=syntax
 
-	" 使用中文帮助
-	set helplang=cn
-	
-	" gvim设置
-	if has("gui_running")
+    " 使用中文帮助
+    set helplang=cn
+    
+    " gvim设置
+    if has("gui_running")
 
-    	" vim内部编码
-    	set encoding=utf-8
+        " vim内部编码
+        set encoding=utf-8
 
-		" 解决起始画面及标题乱码
-		language messages zh_CN.utf-8
+        " 解决起始画面及标题乱码
+        language messages zh_CN.utf-8
 
-		" 解决菜单乱码
-		source $VIMRUNTIME/delmenu.vim
-		source $VIMRUNTIME/menu.vim
-		
-		" 字体设置
+        " 解决菜单乱码
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+        
+        " 字体设置
         set guifont=Menlo:h10
         "set guifont=Monaco:h9
-		"set guifont=Consolas:h10
-		"set guifont=Courier_New:h10
+        "set guifont=Consolas:h10
+        "set guifont=Courier_New:h10
         set guifontwide=微软雅黑:h10
 
-		" 设置窗口的起始位置和大小
-		winpos 250 200
+        " 设置窗口的起始位置和大小
+        winpos 250 200
 
-		" vimtweak 命令映射
-		" 透明度设置
-		command -nargs=1 SetAlpha call libcallnr("vimtweak.dll", "SetAlpha", <args>)
-		" 窗口总在最前
-		command -nargs=1 SetTopMost call libcallnr("vimtweak.dll", "EnableTopMost", <args>)
-		" 窗口最大化
-		command -nargs=1 SetMaximize call libcallnr("vimtweak.dll", "EnableMaximize", <args>)
+        " vimtweak 命令映射
+        " 透明度设置
+        command -nargs=1 SetAlpha call libcallnr("vimtweak.dll", "SetAlpha", <args>)
+        " 窗口总在最前
+        command -nargs=1 SetTopMost call libcallnr("vimtweak.dll", "EnableTopMost", <args>)
+        " 窗口最大化
+        command -nargs=1 SetMaximize call libcallnr("vimtweak.dll", "EnableMaximize", <args>)
 
-	endif
+    endif
 
 endif
 
 " 插件设置
-let s:appdata = expand('$VIM\.appdata')
+let appdata = expand('$VIM\.appdata')
 " jshint
-let g:jshint_rcfile = s:appdata.'\jshint\.jshintrc'
+let g:jshint_rcfile = appdata.'\jshint\.jshintrc'
 " loadtemplate
-let g:template_path = s:appdata.'\load_template\templates\'
+let g:template_path = appdata.'\load_template\templates\'
 
-" html文件自动加载jsruntime与jshint插件
-" au FileType html source $VIM\vimfiles\ftplugin\javascript\jsruntime.vim
+" jsflakes works with html file
 au FileType html source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim
+" jsflakes works with .json file
+au BufRead,BufNewFile *.json source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim | setf json
 
-" javascript字典
+" javascript dictionary
 au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict
 
 " python下用空格代替tab
@@ -155,12 +156,12 @@ nmap <F3> :%s/\r\(\n\)/\1/g<CR>:echo <CR>
 " F4高亮当前光标所在列
 nmap <F4> :call SetColorColumn()<CR>:echo <CR>
 function! SetColorColumn()
-	let col = virtcol(".")
-	let ccs = split(&cc,',')
-	if count(ccs, string(col)) <= 0
-		let op = "+"
-	else
-		let op = "-"
-	endif
-	exec "set cc".op."=".col
+    let col = virtcol(".")
+    let ccs = split(&cc,',')
+    if count(ccs, string(col)) <= 0
+        let op = "+"
+    else
+        let op = "-"
+    endif
+    exec "set cc".op."=".col
 endfunction

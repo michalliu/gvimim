@@ -164,3 +164,6 @@ function! SetColorColumn()
     endif
     exec "set cc".op."=".col
 endfunction
+
+" F5新标签
+nmap <F5> :tabnew<CR>

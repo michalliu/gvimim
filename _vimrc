@@ -43,6 +43,14 @@ syntax on
 " 颜色主题
 colorscheme zellner
 
+" http://vim.wikia.com/wiki/Converting_tabs_to_spaces
+" insert space when <tab> is down
+set expandtab
+" insert four spaces when <tab> is down
+set tabstop=4
+" insert 4 spaces when indent
+set shiftwidth=4
+
 " 常规设置
 if has("win32")
 
@@ -136,15 +144,6 @@ au BufRead,BufNewFile *.json source $VIM\vimfiles\ftplugin\javascript\jsflakes.v
 
 " javascript dictionary
 au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict
-
-" python下用空格代替tab
-" http://vim.wikia.com/wiki/Converting_tabs_to_spaces
-" 按下tab键就插入空格
-au FileType python set expandtab
-" 按下tab键插入4个空格
-au FileType python set tabstop=4
-" 缩进时插入4个空格
-au FileType python set shiftwidth=4
 
 " 常用快捷键
 " F2取消高亮

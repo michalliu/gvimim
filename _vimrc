@@ -37,6 +37,12 @@ filetype plugin on
 " pyflakes
 filetype plugin indent on
 
+" filetype detection
+augroup filetypemore
+    au!
+    au BufRead,BufNewFile *.json setf json
+augroup end
+
 " 开启语法高亮
 syntax on
 
@@ -139,8 +145,6 @@ let g:template_path = appdata.'\load_template\templates\'
 
 " jsflakes works with html file
 au FileType html source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim
-" jsflakes works with .json file
-au BufRead,BufNewFile *.json source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim | setf json
 
 " javascript dictionary
 au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict

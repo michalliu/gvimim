@@ -52,6 +52,8 @@ class VimJavascriptConsole(PyV8.JSClass):
         pass
 
     def _out(self,obj,name=''):
+        if not obj:
+            obj = "undefined"
         print '%s%s' % (name,obj)
 
     def log(self,obj):
@@ -76,6 +78,8 @@ class VimJavascriptRuntime(PyV8.JSClass):
 
     def alert(self, msg):
         """Displays an alert box with a message and an OK button"""
+        if not msg:
+            msg = "undefined"
         print "ALERT: ", msg
 
     @property

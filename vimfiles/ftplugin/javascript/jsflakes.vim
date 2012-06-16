@@ -83,7 +83,11 @@ let s:jshint_run = join(readfile(s:install_dir.'/jshint_run.js'), "\n")
 let b:showing_message = 0
 
 " a flag to know whether automatic code lint is enabled
-let b:jsflakes_autolint = 1
+if exists("g:jsflakes_autolint")
+    let b:jsflakes_autolint = g:jsflakes_autolint
+else
+    let b:jsflakes_autolint = 1
+endif
 
 " load option file for jshint
 if !exists("g:jshint_rcfile")

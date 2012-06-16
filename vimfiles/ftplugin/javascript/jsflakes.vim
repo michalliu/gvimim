@@ -22,7 +22,8 @@ endif
 
 if !g:loaded_jsruntime
     echoerr("jsflakes disabled automaticly, because jsruntime.vim report not working properly")
-    " set a flag to disable jsfalkes
+    " set a flag to disable jsflakes
+    " the new buffer will not invoke jsflakes again
     let g:disabled_jsflakes_plugin = 1
     finish
 endif

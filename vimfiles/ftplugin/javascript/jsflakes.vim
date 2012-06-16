@@ -416,3 +416,8 @@ endif
 if !exists(":JSHint")
     command JSHint :call s:JSHintUpdate()
 endif
+
+" another shorter version
+if !exists(":JSLint")
+    command JSLint :call s:JSHintUpdate()
+endif

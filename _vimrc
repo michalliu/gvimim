@@ -1,7 +1,7 @@
 ﻿set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -51,7 +51,7 @@ colorscheme zellner
 
 " http://vim.wikia.com/wiki/Converting_tabs_to_spaces
 " insert space when <tab> is down
-set expandtab
+" set expandtab
 " insert four spaces when <tab> is down
 set tabstop=4
 " insert 4 spaces when indent

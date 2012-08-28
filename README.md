@@ -100,7 +100,17 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
 12. [autoclose](http://www.vim.org/scripts/script.php?script_id=2009)
 
-    提供括号自动补全功能
+    括号自动补全
+
+13. [vimExplorer](http://www.vim.org/scripts/script.php?script_id=1950)
+
+    轻量的文件浏览器
+
+        :VE [directory] 打开文件夹
+
+14. [snipMate](http://www.vim.org/scripts/script.php?script_id=2540)
+
+    代码快速补全
 
 特别感谢
 -----------------------

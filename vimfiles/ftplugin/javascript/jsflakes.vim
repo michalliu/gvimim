@@ -22,7 +22,8 @@ endif
 
 if !g:loaded_jsruntime
     echoerr("jsflakes disabled automaticly, because jsruntime.vim report not working properly")
-    " set a flag to disable jsfalkes
+    " set a flag to disable jsflakes
+    " the new buffer will not invoke jsflakes again
     let g:disabled_jsflakes_plugin = 1
     finish
 endif
@@ -82,7 +83,11 @@ let s:jshint_run = join(readfile(s:install_dir.'/jshint_run.js'), "\n")
 let b:showing_message = 0
 
 " a flag to know whether automatic code lint is enabled
-let b:jsflakes_autolint = 1
+if exists("g:jsflakes_autolint")
+    let b:jsflakes_autolint = g:jsflakes_autolint
+else
+    let b:jsflakes_autolint = 1
+endif
 
 " load option file for jshint
 if !exists("g:jshint_rcfile")
@@ -414,4 +419,9 @@ endif
 " a shorter version
 if !exists(":JSHint")
     command JSHint :call s:JSHintUpdate()
+endif
+
+" another shorter version
+if !exists(":JSLint")
+    command JSLint :call s:JSHintUpdate()
 endif

@@ -1,7 +1,7 @@
 ﻿set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -51,7 +51,7 @@ colorscheme zellner
 
 " http://vim.wikia.com/wiki/Converting_tabs_to_spaces
 " insert space when <tab> is down
-set expandtab
+" set expandtab
 " insert four spaces when <tab> is down
 set tabstop=4
 " insert 4 spaces when indent
@@ -145,6 +145,9 @@ let g:template_path = appdata.'\load_template\templates\'
 
 " jsflakes works with html file
 au FileType html source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim
+
+" 反注释条目以禁用javascript自动检查错误,可用<Leader>al手动激活
+" let g:jsflakes_autolint=0
 
 " javascript dictionary
 au FileType javascript set dictionary=$VIM\vimfiles\dict\javascript.dict

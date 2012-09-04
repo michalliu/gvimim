@@ -57,6 +57,9 @@ set tabstop=4
 " insert 4 spaces when indent
 set shiftwidth=4
 
+" 出错时用闪屏代替声音
+set vb
+
 " 常规设置
 if has("win32")
 

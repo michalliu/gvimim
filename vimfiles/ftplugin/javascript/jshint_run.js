@@ -1,5 +1,5 @@
-var ok = JSHINT(%s),
-      i,
+var ok = JSHINT(%s);
+var   i,
       error,
       errorType,
       nextError,

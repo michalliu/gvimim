@@ -163,10 +163,9 @@ if !exists('*s:JSHint')
         let lintscript = s:jshintrc + getline(startline, endline)
         let js = js . printf(s:jshint_run,b:json_dump_string(lintscript))
 
-        " printout scripts to be eval for debug
-        " echo js
-        " call writefile([js],'debug.txt','b')
         let jshint_output = b:jsruntimeEvalScript(js)
+        " printout scripts to be eval for debug
+        " call writefile([js,jshint_output],'debug.txt','b')
         for error in split(jshint_output, "\n")
             " Match {line}:{char}:{message}
             let parts = matchlist(error, '\v(\d+):(\d+):([A-Z]+):(.*)')

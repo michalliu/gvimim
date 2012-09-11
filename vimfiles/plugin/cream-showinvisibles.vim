@@ -137,7 +137,7 @@ function! Cream_listchars_init()
 		execute "set listchars+=eol:" . nr2char(36)
 	endif
 
-	" trail
+	" trail space
 	if     strlen(substitute(strtrans(nr2char(183)), ".", "x", "g")) == 1
 		" others digraphs: 0U 0M/M0 sB .M 0m/m0 RO
 		" middle dot (digraph .M)
@@ -147,7 +147,7 @@ function! Cream_listchars_init()
 		execute "set listchars+=trail:" . nr2char(46)
 	endif
 
-	" trail
+	" space
 	if     strlen(substitute(strtrans(nr2char(183)), ".", "x", "g")) == 1
 		" others digraphs: 0U 0M/M0 sB .M 0m/m0 RO
 		" middle dot (digraph .M)

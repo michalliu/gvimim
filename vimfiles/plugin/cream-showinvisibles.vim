@@ -237,6 +237,8 @@ function! Cream_list_init()
 	else
 		if g:LIST == 1
 			set list
+			hi NonText ctermfg=7 guifg=gray
+			hi SpecialKey ctermfg=7 guifg=gray
 		else
 			set nolist
 		endif
@@ -248,6 +250,8 @@ function! Cream_list_toggle(mode)
 	if exists("g:LIST")
 		if g:LIST == 0
 			set list
+			hi NonText ctermfg=7 guifg=gray
+			hi SpecialKey ctermfg=7 guifg=gray
 			let g:LIST = 1
 		elseif g:LIST == 1
 			set nolist

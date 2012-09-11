@@ -228,8 +228,24 @@ function! Cream_listchars_init()
 endfunction
 call Cream_listchars_init()
 
+function! Cream_list_gray()
+	hi NonText guifg=gray
+	hi SpecialKey guifg=gray
+endfunction
+
+function! Cream_list_restore()
+	:exe "hi NonText guifg=".s:initialNonTextFG
+	:exe "hi NonText guifg=".s:initialSpecialKeyFG
+endfunction
+
 " initialize environment on BufEnter (local)
 function! Cream_list_init()
+	if !exists("s:initialNonTextFG")
+		let s:initialNonTextFG = synIDattr(hlID("NonText"),"fg")
+	endif
+	if !exists("s:initialSpecialKeyFG")
+		let s:initialSpecialKeyFG = synIDattr(hlID("SpecialKey"),"fg")
+	endif
 	if !exists("g:LIST")
 		" initially off
 		set nolist
@@ -237,8 +253,7 @@ function! Cream_list_init()
 	else
 		if g:LIST == 1
 			set list
-			hi NonText ctermfg=7 guifg=gray
-			hi SpecialKey ctermfg=7 guifg=gray
+			call Cream_list_gray()
 		else
 			set nolist
 		endif
@@ -250,11 +265,11 @@ function! Cream_list_toggle(mode)
 	if exists("g:LIST")
 		if g:LIST == 0
 			set list
-			hi NonText ctermfg=7 guifg=gray
-			hi SpecialKey ctermfg=7 guifg=gray
+			call Cream_list_gray()
 			let g:LIST = 1
 		elseif g:LIST == 1
 			set nolist
+			call Cream_list_restore()
 			let g:LIST = 0
 		endif
 	else

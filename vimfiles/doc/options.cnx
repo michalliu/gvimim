@@ -3702,16 +3702,17 @@ se[t]		字符串 "set " 或 "se " (注意 空格)
 	  conceal:c	用于替代隐藏文本的字符，用于 'conceallevel' 为 1 时。
 	  nbsp:c	显示不可间断空格的字符 (字符 0xA0，160)。如果忽略，留
 			出一个空格。
+	  space:c	显示空格的字符 (字符 0x20，32)。如果忽略，留出一个空格。
 
 	不应该使用字符 ':' 和 ','。如果 'encoding' 为 "utf-8"，可以使用 UTF-8
 	字符，不然只能使用可显示的字符。所有字符必须使用单倍宽度。
 
 	示例: >
-	    :set lcs=tab:>-,trail:-
+	    :set lcs=tab:>-,trail:-,space:.
 	    :set lcs=tab:>-,eol:<,nbsp:%
 	    :set lcs=extends:>,precedes:<
 <	"NonText" 高亮会用于 "eol"、"extends" 和 "precedes"。"SpecialKey" 用于
-	"nbsp"、"tab" 和 "trail"。
+	"nbsp"、"space"、"tab" 和 "trail"。
 	|hl-NonText| |hl-SpecialKey|
 
 			*'lpl'* *'nolpl'* *'loadplugins'* *'noloadplugins'*

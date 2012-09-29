@@ -9,25 +9,25 @@ set cpo&vim
 
 " iternal usage encode to json string
 function! jsoncodecs#encode_basestring(str)
-    let l:ret = a:str
-    "let l:ret = substitute(l:ret,'\\','\\\\','g')
-    "let l:ret = escape(l:ret,'"')
-    "let l:ret = substitute(l:ret,'\b','\\b','g')
-    "let l:ret = substitute(l:ret,'\%x0c','\\f','g')
-    "let l:ret = substitute(l:ret,'\n','\\n','g')
-    "let l:ret = substitute(l:ret,'\r','\\r','g')
-    "let l:ret = substitute(l:ret,'\t','\\t','g')
-    let l:ret = substitute(l:ret,'\%x5C','\\\\','g')
-    let l:ret = substitute(l:ret,'\%x22','\\"','g')
-    let l:ret = substitute(l:ret,'\%x2F','/','g')
-    let l:ret = substitute(l:ret,'\%x08','\\b','g')
-    let l:ret = substitute(l:ret,'\%x0C','\\f','g')
-    let l:ret = substitute(l:ret,'\%x0A','\\n','g')
-    let l:ret = substitute(l:ret,'\%x0D','\\r','g')
-    let l:ret = substitute(l:ret,'\%x09','\\t','g')
+    let ret = a:str
+   "let ret = substitute(ret,'\\','\\\\','g')
+   "let ret = escape(ret,'"')
+   "let ret = substitute(ret,'\b','\\b','g')
+   "let ret = substitute(ret,'\%x0c','\\f','g')
+   "let ret = substitute(ret,'\n','\\n','g')
+   "let ret = substitute(ret,'\r','\\r','g')
+   "let ret = substitute(ret,'\t','\\t','g')
+    let ret = substitute(ret,'\%x5C','\\\\','g')
+    let ret = substitute(ret,'\%x22','\\"','g')
+    let ret = substitute(ret,'\%x2F','/','g')
+    let ret = substitute(ret,'\%x08','\\b','g')
+    let ret = substitute(ret,'\%x0C','\\f','g')
+    let ret = substitute(ret,'\%x0A','\\n','g')
+    let ret = substitute(ret,'\%x0D','\\r','g')
+    let ret = substitute(ret,'\%x09','\\t','g')
     " TODO unicode escape
     " http://www.ietf.org/rfc/rfc4627
-    return l:ret
+    return ret
 endfunction
 
 function! jsoncodecs#dump_string(linelist)

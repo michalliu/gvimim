@@ -128,12 +128,10 @@ else
     endif
 endif
 
-" expose a flag to other plugin to know does jsruntime support living context
-if s:js_interpreter == 'pyv8'
-    let javascript#runtime#supportLivingContext = 1
-else
-    let javascript#runtime#supportLivingContext = 0
-endif
+" a flag to other plugin to know does jsruntime support living context
+function! javascript#runtime#isSupportLivingContext()
+	return s:js_interpreter == 'pyv8'
+endfunction
 
 " something you need to know as a vim scripter
 " :help CR-used-for-NL

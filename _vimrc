@@ -146,9 +146,6 @@ let g:jshint_rcfile = appdata.'\jshint\.jshintrc'
 " loadtemplate
 let g:template_path = appdata.'\load_template\templates\'
 
-" jsflakes works with html file
-au FileType html source $VIM\vimfiles\ftplugin\javascript\jsflakes.vim
-
 " 反注释条目以禁用javascript自动检查错误,可用<Leader>al手动激活
 " let g:jsflakes_autolint=0
 

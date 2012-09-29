@@ -15,24 +15,6 @@ endif
 
 let b:did_jsflakes_plugin = 1
 
-if !exists("g:loaded_jsruntime")
-    echoerr('jsruntime.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4050')
-    finish
-endif
-
-if !g:loaded_jsruntime
-    echoerr("jsflakes disabled automaticly, because jsruntime.vim report not working properly")
-    " set a flag to disable jsflakes
-    " the new buffer will not invoke jsflakes again
-    let g:disabled_jsflakes_plugin = 1
-    finish
-endif
-
-if !exists("g:loaded_jsoncodecs")
-    echoerr('jsoncodecs.vim is required, plz visit http://www.vim.org/scripts/script.php?script_id=4056')
-    finish
-endif
-
 if &ft == 'html' || &ft == 'xhtml'
     if has('python')
     python << EOF
@@ -70,7 +52,7 @@ class htmlParser(HTMLParser):
 
 EOF
     else
-        echoerr('jsflakes requires Vim must be compiled with Python to parse html')
+        echoerr 'jsflakes requires Vim must be compiled with Python to parse html'
         finish
     endif
 endif
@@ -124,8 +106,8 @@ if !exists('*s:JSHint')
         highlight link JSHintError SpellBad
 
         if !exists('s:did_jshint_context')
-            if g:jsruntime_support_living_context
-                call b:jsruntimeEvalScript(s:jshint_context,0)
+            if javascript#runtime#isSupportLivingContext()
+                call javascript#runtime#evalScript(s:jshint_context,0)
                 let s:did_jshint_context = 1
             else
                 let s:did_jshint_context = 0
@@ -161,9 +143,9 @@ if !exists('*s:JSHint')
         let error_list = []
 
         let lintscript = s:jshintrc + getline(startline, endline)
-        let js = js . printf(s:jshint_run,b:json_dump_string(lintscript))
+        let js = js . printf(s:jshint_run,jsoncodecs#dump_string(lintscript))
 
-        let jshint_output = b:jsruntimeEvalScript(js)
+        let jshint_output = javascript#runtime#evalScript(js)
         " printout scripts to be eval for debug
         " call writefile([js,jshint_output],'debug.txt','b')
         for error in split(jshint_output, "\n")
@@ -354,7 +336,7 @@ if !exists("*s:RunJavascript")
         else 
             let endline=a:1
         endif
-        call b:jsruntimeEvalScript(join(getline(startline, endline),"\n"))
+        call javascript#runtime#evalScript(join(getline(startline, endline),"\n"))
     endfunction
 endif
 
@@ -368,25 +350,21 @@ if !exists(":RunJSBlock")
 endif
 
 " run html inside vim
-" RunBrowser depend jsruntimeEvalScriptInBrowserContext 
-if exists("*b:jsruntimeEvalScriptInBrowserContext") && &ft == 'html'
-
-    if !exists("*s:RunJavascriptInBrowserContext")
-        function s:RunJavascriptInBrowserContext(startline,...)
-            " Detect range
-            if a:startline < 1
-                let startline=1
-            else 
-                let startline=a:startline
-            endif
-            if !exists("a:1")
-                let endline='$'
-            else 
-                let endline=a:1
-            endif
-            call b:jsruntimeEvalScriptInBrowserContext(join(getline(startline, endline),"\n"))
-        endfunction
-    endif
+if javascript#runtime#isSupportLivingContext() && !exists("*s:RunJavascriptInBrowserContext")
+    function s:RunJavascriptInBrowserContext(startline,...)
+        " Detect range
+        if a:startline < 1
+            let startline=1
+        else 
+            let startline=a:startline
+        endif
+        if !exists("a:1")
+            let endline='$'
+        else 
+            let endline=a:1
+        endif
+        call javascript#runtime#evalScriptInBrowserContext(join(getline(startline, endline),"\n"))
+    endfunction
 
     if !exists(":RunHtml")
         command RunHtml :call s:RunJavascriptInBrowserContext(1)
@@ -398,6 +376,7 @@ if exists("*b:jsruntimeEvalScriptInBrowserContext") && &ft == 'html'
     endif
 
 endif
+
 
 " fix issue #3 on github
 au BufUnload,BufHidden <buffer> call s:JSHintClear()

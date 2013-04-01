@@ -47,20 +47,23 @@ class VimJavascriptConsole(PyV8.JSClass):
             obj = "undefined"
         print '%s%s' % (name,obj)
 
-    def log(self,obj):
-        return self._out(obj)
+    def log(self, obj='', *args):
+        return self._out(str(obj) % args,name="LOG: ")
 
-    def debug(self,obj):
-        return self._out(obj,name="DEBUG: ")
+    def debug(self, obj='', *args):
+        return self._out(str(obj) % args,name="DEBUG: ")
 
-    def info(self,obj):
-        return self._out(obj,name="INFO: ")
+    def info(self, obj='', *args):
+        return self._out(str(obj) % args,name="INFO: ")
 
-    def warn(self,obj):
-        return self._out(obj,name="WARN: ")
+    def warn(self, obj='', *args):
+        return self._out(str(obj) % args,name="WARN: ")
 
-    def error(self,obj):
-        return self._out(obj,name="ERROR: ")
+    def error(self, obj='', *args):
+        return self._out(str(obj) % args,name="ERROR: ")
+
+    def trace(self, *args):
+        pass
 
 class VimJavascriptRuntime(PyV8.JSClass):
 
@@ -161,15 +164,21 @@ try:
         ret = str(ret) #call toString methond
     vim.command('let result=%s' % json.dumps(ret))
 except Exception,e:
-    vim.command('echoerr \'%s\'' % e)
+    #vim.command('echoerr \'%s\'' % e)
+    #with open("jsruntimedebug.txt","w") as fp:
+    #    fp.write(str(e))
+    #    fp.close()
+    vim.command('echoerr \"There\'s a problem while evaluating javascript code\"')
     vim.command('let result=\'\'')
 
 EOF
     else
         let s:cmd = s:js_interpreter . ' "' . s:install_dir . '/jsrunner/runjs.' . s:runjs_ext . '"'
         let result = system(s:cmd, a:script)
+        "call writefile(["returned",result,"script",a:script],'jsruntimedebug.txt')
         if v:shell_error
-           echoerr 'jsruntime is not working properly. plz visit http://www.vim.org/scripts/script.php?script_id=4050 for more info'
+           echoerr "There\'s a problem while evaluating javascript code"
+           "echoerr 'jsruntime is not working properly. plz visit http://www.vim.org/scripts/script.php?script_id=4050 for more info'
         end
     endif
     return result

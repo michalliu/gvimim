@@ -1,7 +1,7 @@
 <job>
 <script language="javascript">
 var alert = function (msg) {
-    WScript.echo('ALERT: ' + msg) 
+    //WScript.echo('ALERT: ' + msg) 
 };
 var console = {
     _out: function (obj, name) {
@@ -24,8 +24,6 @@ var console = {
         return console._out(obj,"ERROR: ");
     }
 };
-</script>
-<script language="javascript">
 var readSTDIN = function() {
     var line,
         input = [],

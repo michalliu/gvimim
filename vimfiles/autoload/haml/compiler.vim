@@ -1,7 +1,7 @@
-"AUTHOR:   Atsushi Mizoue <asionfb@gmail.com>
-"WEBSITE:  https://github.com/AtsushiM/haml-compile.vim
-"VERSION:  0.9
-"LICENSE:  MIT
+" Maintainer: yf liu <sophia.smth@gmail.com>
+" Description: haml live compiler
+" Version: 1.0
+"
 
 let s:save_cpo = &cpo
 set cpo&vim

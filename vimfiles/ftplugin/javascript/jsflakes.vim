@@ -4,7 +4,7 @@
 " Description: javascript lint tool on the fly
 " Version: 1.0
 "
-if exists("b:did_jsflakes_plugin")
+if exists("b:did_jsflakes_plugin") || &cp
     finish
 endif
 

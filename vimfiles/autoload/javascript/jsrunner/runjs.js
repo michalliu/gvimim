@@ -1,7 +1,7 @@
 /*jshint laxbreak: true */
 
 if (typeof require != 'undefined') {
-    print = require('sys').puts;
+    print = (require('sys') || require('util')).puts;
 }
 
 var alert = function (msg) {

@@ -71,6 +71,9 @@ function! haml#compiler#compile(source)
 		let js =context.printf(s:hamljs_compiler, jsoncodecs#dump_string([a:source]))
 		" call writefile([js],"hamlcompiler_source.txt")
 		let result = javascript#runtime#evalScript(js)
+		if result == "undefined"
+			let result = ""
+		endif
 		" call writefile([result],"hamlcompiler_result.txt")
 	endif
 	return result

@@ -112,6 +112,10 @@ Vim官网版只提供有限的功能，因为Vim的作者鼓励开发者独自�
 
     代码快速补全
 
+15. [haml-instant](http://www.vim.org/scripts/script.php?script_id=4513)
+
+    即时编译预览Haml
+
 特别感谢
 -----------------------
 vim中文文档 <http://vimcdoc.sourceforge.net/>

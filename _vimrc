@@ -174,3 +174,8 @@ endfunction
 
 " F5新标签
 nmap <F5> :tabnew<CR>
+
+" F6 已注册为切换不可见字符显示
+"
+" F7删除无内容的行，但保留换行
+nmap <F7> :%s/^\(\s\+\)$//g<CR>:echo <CR>

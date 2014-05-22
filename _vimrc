@@ -136,7 +136,9 @@ if has("win32")
         command -nargs=1 SetMaximize call libcallnr("vimtweak.dll", "EnableMaximize", <args>)
 
     endif
-
+else
+	" see help 'backspace'
+	set backspace=2
 endif
 
 " 插件设置

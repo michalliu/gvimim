@@ -38,7 +38,7 @@ var readSTDIN = function() {
         input.push(line);
     }
 
-    return input.join("\n");
+    return input.join("");
 };
 
 var body = readSTDIN() || arguments[0];

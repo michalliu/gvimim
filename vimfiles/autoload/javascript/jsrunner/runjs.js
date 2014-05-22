@@ -1,17 +1,26 @@
 /*jshint laxbreak: true */
-
+var print;
 if (typeof require != 'undefined') {
-    print = (require('sys') || require('util')).puts;
+    try{
+        print=require('util');
+    }catch(ex){
+        print=require('sys');
+    }
+    print = print.puts;
 }
 
 var alert = function (msg) {
-    print('ALERT: ' + msg); 
+    if (print) {
+        print('ALERT: ' + msg); 
+    }
 };
 
 var console = {
     _out: function (obj, name) {
         name = name || '';
-        print(name + obj);
+        if (print) {
+            print(name + obj);
+        }
     },
     log: function (obj) {
         return console._out(obj);
@@ -48,7 +57,7 @@ var readSTDIN = (function() {
             });
 
             stdin.on('end', function(chunk) {
-                callback(body.join('\n'));
+                callback(body.join(''));
             });
         };
 
@@ -64,7 +73,7 @@ var readSTDIN = (function() {
                 lines.push(stdin.readLine());
             }
 
-            callback(lines.join('\n'));
+            callback(lines.join(''));
         };
 
     // readSTDIN() definition for Spidermonkey
@@ -87,11 +96,11 @@ var readSTDIN = (function() {
             }
 
             input.splice(-emptyCount);
-            callback(input.join('\n'));
+            callback(input.join(''));
         };
     }
 })();
 
 readSTDIN(function(body) {
-	console.log(eval(body));
+    console.log(eval(body));
 });

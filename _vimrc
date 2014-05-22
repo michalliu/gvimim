@@ -140,11 +140,11 @@ if has("win32")
 endif
 
 " 插件设置
-let appdata = expand('$VIM\.appdata')
+let appdata = expand('$VIM/.appdata')
 " jshint
-let g:jshint_rcfile = appdata.'\jshint\.jshintrc'
+let g:jshint_rcfile = appdata.'/jshint/.jshintrc'
 " loadtemplate
-let g:template_path = appdata.'\load_template\templates\'
+let g:template_path = appdata.'/load_template/templates/'
 
 " 反注释条目以禁用javascript自动检查错误,可用<Leader>al手动激活
 " let g:jsflakes_autolint=0

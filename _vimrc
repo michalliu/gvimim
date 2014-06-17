@@ -139,6 +139,7 @@ if has("win32")
 else
 	" see help 'backspace'
 	set backspace=2
+	set nobackup
 endif
 
 " 插件设置

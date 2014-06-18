@@ -190,6 +190,7 @@ function css_beautify(source_text, options) {
 
 
     var sweetCode = output.join('').replace(/[\n ]+$/, '');
+	sweetCode=sweetCode.replace(/and\(/ig,"and (");
     return sweetCode;
 }
 

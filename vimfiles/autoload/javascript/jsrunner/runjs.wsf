@@ -42,6 +42,15 @@ var readSTDIN = function() {
 };
 
 var body = readSTDIN() || arguments[0];
+try{
 console.log(eval(body));
+} catch (e) {
+var errorDetail=[];
+for (var k in e) {
+errorDetail.push(k + ":" + e[k]);
+}
+console.log(errorDetail.join("\n"));
+WScript.Quit(1);
+}
 </script>
 </job>

@@ -102,5 +102,10 @@ var readSTDIN = (function() {
 })();
 
 readSTDIN(function(body) {
-    console.log(eval(body));
+    try{
+        console.log(eval(body));
+    } catch (e) {
+        console.log(e);
+        process.exit(1);
+    }
 });

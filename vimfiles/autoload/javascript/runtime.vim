@@ -186,11 +186,12 @@ try:
         ret = str(ret) #call toString methond
     vim.command('let result=%s' % json.dumps(ret))
 except Exception,e:
-    #vim.command('echoerr \'%s\'' % e)
-    #with open("jsruntimedebug.txt","w") as fp:
-    #    fp.write(str(e))
-    #    fp.close()
+#    with open("jsruntimedebug.txt","w") as fp:
+#        fp.write(str(e))
+#        fp.close()
     vim.command('echoerr \"There\'s a problem while evaluating javascript code\"')
+    vim.command('echo \"Javascript Interpreter => %s\"' % vim.eval('s:js_interpreter'))
+    vim.command('echo \"Details => %s\"' % e)
     vim.command('let result=\'\'')
 
 EOF
@@ -200,7 +201,7 @@ EOF
         "call writefile(["returned",result,"script",a:script],'jsruntimedebug.txt')
         if v:shell_error
            echoerr "There\'s a problem while evaluating javascript code"
-           "echoerr 'jsruntime is not working properly. plz visit http://www.vim.org/scripts/script.php?script_id=4050 for more info'
+           echo "Javascript Interpreter => " . s:js_interpreter . "\nDetails => " . result
         end
     endif
     return result

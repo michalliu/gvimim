@@ -1,4 +1,5 @@
-﻿set nocompatible
+﻿" vim: ts=4 sw=4 et
+set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
@@ -41,6 +42,7 @@ filetype plugin indent on
 augroup filetypemore
     au!
     au BufRead,BufNewFile *.json setf json
+    au BufRead,BufNewFile *.smali set filetype=smali
 augroup end
 
 " 开启语法高亮

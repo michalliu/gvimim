@@ -4,8 +4,10 @@
 # vim: ts=4 sw=4 et
 import sys
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+    sys.setdefaultencoding(default_encoding)
 
 def main():
     pass

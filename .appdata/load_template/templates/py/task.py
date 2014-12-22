@@ -36,7 +36,7 @@ class Task(object):
     def __init__(self):
         parser = argparse.ArgumentParser(
             description='Pretends to be git',
-            usage='''git <command> [<args>]
+            usage='''task <command> [<args>]
 
 The most commonly used git commands are:
    commit     Record changes to the repository
@@ -47,7 +47,7 @@ The most commonly used git commands are:
         # exclude the rest of the args too, or validation will fail
         args = parser.parse_args(sys.argv[1:2])
         if not hasattr(self, args.command):
-            print 'Unrecognized command'
+            print 'Unrecognized command %s' % args.command
             parser.print_help()
             exit(1)
         # use dispatch pattern to invoke method with same name

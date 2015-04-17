@@ -30,10 +30,10 @@ def init_logger():
     logger.setLevel(logging.DEBUG)
     logger = logging.getLogger(logger_name)
 
-def main():
+def main(argv):
     init_logger()
     logger.info("hello world")
     pass
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

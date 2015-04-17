@@ -9,8 +9,8 @@ if sys.getdefaultencoding() != default_encoding:
     reload(sys)
     sys.setdefaultencoding(default_encoding)
 
-def main():
+def main(argv):
     pass
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

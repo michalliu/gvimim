@@ -71,10 +71,10 @@ The most commonly used git commands are:
         args = parser.parse_args(sys.argv[2:])
         print 'Running git fetch, repository=%s' % args.repository
 
-def main():
+def main(argv):
     init_logger()
     Task()
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
 

@@ -1,4 +1,4 @@
-*gui_w32.txt*   For Vim version 7.3.  Last change: 2007 Aug 30
+*gui_w32.txt*   For Vim version 7.3.  Last change: 2012 Aug 04
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -137,6 +137,9 @@ options:
 And if there already is a gvim running:
 "Edit with existing gvim"   -- edit the file with the running gvim
 
+The "edit with existing Vim" entries can be disabled by adding an entry in the
+registry under HKLM\Software\Vim\Gvim, named DisableEditWithExisting, and with
+any value.
 						*install-registry*
 You can add the "Edit with Vim" menu entry in an easy way by using the
 "install.exe" program.  It will add several registry entries for you.
@@ -293,7 +296,9 @@ Normally, Vim waits for a command to complete before continuing (this makes
 sense for most shell commands which produce output for Vim to use).  If you
 want Vim to start a program and return immediately, you can use the following
 syntax on W95 & NT: >
-	:!start {command}
+	:!start [/min] {command}
+The optional "/min" causes the window to be minimized.
+
 On Win32s, you will have to go to another window instead.  Don't forget that
 you must tell Windows 3.1x to keep executing a DOS command in the background
 while you switch back to Vim.
@@ -483,5 +488,17 @@ to:
 
 And add gvim to the list of applications.  This problem only appears to happen
 with the Intellimouse driver 2.2 and when "Universal Scrolling" is turned on.
+
+
+XPM support						*w32-xpm-support*
+
+Gvim can be build on MS-Windows with support for XPM files.  |+xpm_w32|
+See the Make_mvc.mak file for instructions, search for XPM.
+
+To try out if XPM support works do this: >
+	:help
+	:exe 'sign define vimxpm icon=' . $VIMRUNTIME . '\\vim16x16.xpm'
+	:exe 'sign place 1 line=1 name=vimxpm file=' . expand('%:p')
+<
 
  vim:tw=78:sw=4:ts=8:ft=help:norl:

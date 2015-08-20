@@ -1,4 +1,4 @@
-*spell.txt*	For Vim version 7.3.  Last change: 2010 Apr 11
+*spell.txt*	For Vim version 7.3.  Last change: 2011 May 25
 
 
 		  VIM REFERENCE MANUAL	  by Bram Moolenaar
@@ -335,6 +335,9 @@ A spell file might not be available in the current 'encoding'.  See
 |spell-mkspell| about how to create a spell file.  Converting a spell file
 with "iconv" will NOT work!
 
+Note: on VMS ".{enc}.spl" is changed to "_{enc}.spl" to avoid trouble with
+filenames.
+
 						    *spell-sug-file* *E781*
 If there is a file with exactly the same name as the ".spl" file but ending in
 ".sug", that file will be used for giving better suggestions.  It isn't loaded
@@ -519,7 +522,7 @@ then Vim will try to guess.
 			Up to eight regions can be combined. *E754* *E755*
 			The REP and SAL items of the first .aff file where
 			they appear are used. |spell-REP| |spell-SAL|
-
+								*E845*
 			This command uses a lot of memory, required to find
 			the optimal word tree (Polish, Italian and Hungarian
 			require several hundred Mbyte).  The final result will
@@ -1241,6 +1244,7 @@ one or more groups, where each group can be:
 Optionally this may be followed by:
 	*	the group appears zero or more times, e.g., sm*e
 	+	the group appears one or more times, e.g., c+
+	?	the group appears zero times or once, e.g., x?
 
 This is similar to the regexp pattern syntax (but not the same!).  A few
 examples with the sequence of word flags they require:
@@ -1248,6 +1252,7 @@ examples with the sequence of word flags they require:
     COMPOUNDRULE yz	    yz
     COMPOUNDRULE x+z	    xz xxz xxxz etc.
     COMPOUNDRULE yx+	    yx yxx yxxx etc.
+    COMPOUNDRULE xy?z	    xz xyz
 
     COMPOUNDRULE [abc]z    az bz cz
     COMPOUNDRULE [abc]+z   az aaz abaz bz baz bcbz cz caz cbaz etc.

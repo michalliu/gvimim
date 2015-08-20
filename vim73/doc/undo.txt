@@ -1,4 +1,4 @@
-*undo.txt*      For Vim version 7.3.  Last change: 2010 Oct 21
+*undo.txt*      For Vim version 7.3.  Last change: 2012 Mar 04
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -35,8 +35,10 @@ CTRL-R			Redo [count] changes which were undone.  {Vi: redraw
 :red[o]			Redo one change which was undone.  {Vi: no redo}
 
 							*U*
-U			Undo all latest changes on one line.  {Vi: while not
-			moved off of it}
+U			Undo all latest changes on one line, the line where
+			the latest change was made. |U| itself also counts as
+			a change, and thus |U| undoes a previous |U|.
+			{Vi: while not moved off of the last modified line}
 
 The last changes are remembered.  You can use the undo and redo commands above
 to revert the text to how it was before each change.  You can also apply the
@@ -125,16 +127,23 @@ This is explained in the user manual: |usr_32.txt|.
 
 							*:undol* *:undolist*
 :undol[ist]		List the leafs in the tree of changes.  Example:
-				number changes   time      saved ~
-				4      10	 10:34:11
-				18     4	 11:01:46  7
+			   number changes  when               saved ~
+			       88      88  2010/01/04 14:25:53
+			      108     107  08/07 12:47:51
+			      136      46  13:33:01             7
+			      166     164  3 seconds ago
 
 			The "number" column is the change number.  This number
 			continuously increases and can be used to identify a
 			specific undo-able change, see |:undo|.
 			The "changes" column is the number of changes to this
 			leaf from the root of the tree.
-			The "time" column is the time this change was made.
+			The "when" column is the date and time when this
+			change was made.  The four possible formats are:
+			    N seconds ago
+			    HH:MM:SS             hour, minute, seconds
+			    MM/DD HH:MM:SS       idem, with month and day
+			    YYYY/MM/DD HH:MM:SS  idem, with year
 			The "saved" column specifies, if this change was
 			written to disk and which file write it was. This can
 			be used with the |:later| and |:earlier| commands.
@@ -241,7 +250,7 @@ detect if an undo file is no longer synchronized with the file it was written
 for (with a hash of the file contents) and ignore it when the file was changed
 after the undo file was written, to prevent corruption.  An undo file is also
 ignored if its owner differs from the owner of the edited file.  Set 'verbose'
-to get a message about that.
+to get a message about that when opening a file.
 
 Undo files are normally saved in the same directory as the file.  This can be
 changed with the 'undodir' option.
@@ -258,7 +267,12 @@ respectively:
 		(the magic number at the start of the file is wrong), then
 		this fails, unless the ! was added.
 		If it exists and does look like an undo file it is
-		overwritten.
+		overwritten. If there is no undo-history, nothing will be 
+		written.
+		Implementation detail: Overwriting happens by first deleting
+		the existing file and then creating a new file with the same
+		name. So it is not possible to overwrite an existing undofile
+		in a write-protected directory.
 		{not in Vi}
 
 :rundo {file}	Read undo history from {file}.

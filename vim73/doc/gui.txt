@@ -1,4 +1,4 @@
-*gui.txt*       For Vim version 7.3.  Last change: 2010 May 14
+*gui.txt*       For Vim version 7.3.  Last change: 2011 Jul 22
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -147,6 +147,15 @@ task bar with the 'guiheadroom' option.
 If you are running the X Window System, you can get information about the
 window Vim is running in with this command: >
 	:!xwininfo -id $WINDOWID
+<
+							*gui-IME* *iBus*
+Input methods for international characters in X that rely on the XIM
+framework, most notably iBus, have been known to produce undesirable results
+in gVim. These may include an inability to enter spaces, or long delays
+between typing a character and it being recognized by the application.
+
+One workaround that has been successful, for unknown reasons, is to prevent
+gvim from forking into the background by starting it with the |-f| argument.
 
 ==============================================================================
 2. Scrollbars						*gui-scrollbars*
@@ -156,26 +165,26 @@ configure which ones appear with the 'guioptions' option.
 
 The interface looks like this (with ":set guioptions=mlrb"):
 
-		       +------------------------------+
-		       | File  Edit		 Help | <- Menu bar (m)
-		       +-+--------------------------+-+
-		       |^|			    |^|
-		       |#| Text area.		    |#|
-		       | |			    | |
-		       |v|__________________________|v|
- Normal status line -> |-+ File.c	       5,2  +-|
- between Vim windows   |^|""""""""""""""""""""""""""|^|
-		       | |			    | |
-		       | | Another file buffer.     | |
-		       | |			    | |
-		       |#|			    |#|
- Left scrollbar (l) -> |#|			    |#| <- Right
-		       |#|			    |#|    scrollbar (r)
-		       | |			    | |
-		       |v|			    |v|
-		       +-+--------------------------+-+
-		       | |< ####		   >| | <- Bottom
-		       +-+--------------------------+-+    scrollbar (b)
+		       +------------------------------+ `
+		       | File  Edit		 Help | <- Menu bar (m) `
+		       +-+--------------------------+-+ `
+		       |^|			    |^| `
+		       |#| Text area.		    |#| `
+		       | |			    | | `
+		       |v|__________________________|v| `
+ Normal status line -> |-+ File.c	       5,2  +-| `
+ between Vim windows   |^|""""""""""""""""""""""""""|^| `
+		       | |			    | | `
+		       | | Another file buffer.     | | `
+		       | |			    | | `
+		       |#|			    |#| `
+ Left scrollbar (l) -> |#|			    |#| <- Right `
+		       |#|			    |#|    scrollbar (r) `
+		       | |			    | | `
+		       |v|			    |v| `
+		       +-+--------------------------+-+ `
+		       | |< ####		   >| | <- Bottom `
+		       +-+--------------------------+-+    scrollbar (b) `
 
 Any of the scrollbar or menu components may be turned off by not putting the
 appropriate letter in the 'guioptions' string.  The bottom scrollbar is

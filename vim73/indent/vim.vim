@@ -1,7 +1,7 @@
 " Vim indent file
 " Language:	Vim script
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last Change:	2005 Jul 06
+" Last Change:	2012 Aug 02
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
@@ -12,12 +12,26 @@ let b:did_indent = 1
 setlocal indentexpr=GetVimIndent()
 setlocal indentkeys+==end,=else,=cat,=fina,=END,0\\
 
+let b:undo_indent = "setl indentkeys< indentexpr<"
+
 " Only define the function once.
 if exists("*GetVimIndent")
   finish
 endif
+let s:keepcpo= &cpo
+set cpo&vim
 
 function GetVimIndent()
+  let ignorecase_save = &ignorecase
+  try
+    let &ignorecase = 0
+    return GetVimIndentIntern()
+  finally
+    let &ignorecase = ignorecase_save
+  endtry
+endfunc
+
+function GetVimIndentIntern()
   " Find a non-blank line above the current line.
   let lnum = prevnonblank(v:lnum - 1)
 
@@ -44,10 +58,18 @@ function GetVimIndent()
     else
       let ind = ind + &sw * 3
     endif
-  elseif getline(lnum) =~ '\(^\||\)\s*\(if\|wh\%[ile]\|for\|try\|cat\%[ch]\|fina\%[lly]\|fu\%[nction]\|el\%[seif]\)\>'
-    let ind = ind + &sw
   elseif getline(lnum) =~ '^\s*aug\%[roup]' && getline(lnum) !~ '^\s*aug\%[roup]\s*!\=\s\+END'
     let ind = ind + &sw
+  else
+    let line = getline(lnum)
+    let i = match(line, '\(^\||\)\s*\(if\|wh\%[ile]\|for\|try\|cat\%[ch]\|fina\%[lly]\|fu\%[nction]\|el\%[seif]\)\>')
+    if i >= 0
+      let ind += &sw
+      if strpart(line, i, 1) == '|' && has('syntax_items')
+            \ && synIDattr(synID(lnum, i, 1), "name") =~ '\(Comment\|String\)$'
+        let ind -= &sw
+      endif
+    endif
   endif
 
   " If the previous line contains an "end" after a pipe, but not in an ":au"
@@ -70,5 +92,8 @@ function GetVimIndent()
 
   return ind
 endfunction
+
+let &cpo = s:keepcpo
+unlet s:keepcpo
 
 " vim:sw=2

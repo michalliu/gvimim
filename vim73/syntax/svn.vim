@@ -1,14 +1,16 @@
 " Vim syntax file
 " Language:     Subversion (svn) commit file
-" Maintainer:   Dmitry Vasiliev <dima at hlabs dot spb dot ru>
-" URL:          http://www.hlabs.spb.ru/vim/svn.vim
-" Revision:     $Id: svn.vim 683 2008-07-30 11:52:38Z hdima $
+" Maintainer:   Dmitry Vasiliev <dima at hlabs dot org>
+" URL:          https://github.com/hdima/vim-scripts/blob/master/syntax/svn.vim
+" Last Change:  2012-07-21
 " Filenames:    svn-commit*.tmp
-" Version:      1.6
+" Version:      1.9
 
 " Contributors:
 "   Stefano Zacchiroli
 "   A. S. Budden
+"   Myk Taylor
+"   Ingo Karkat
 
 " For version 5.x: Clear all syntax items.
 " For version 6.x: Quit when a syntax file was already loaded.
@@ -18,11 +20,14 @@ elseif exists("b:current_syntax")
   finish
 endif
 
-syn region svnRegion    start="^--.*--$" end="\%$" contains=ALL contains=@NoSpell
+syn region svnText      start="\%^" end="^--.*--$"me=s-1 contains=@Spell
+
+syn region svnRegion    start="^--.*--$" end="\%$" contains=ALL
 syn match svnRemoved    "^D    .*$" contained
-syn match svnAdded      "^A[ M]   .*$" contained
-syn match svnModified   "^M[ M]   .*$" contained
-syn match svnProperty   "^_M   .*$" contained
+syn match svnRenamed    "^R[ M][ U][ +] .*$" contained
+syn match svnAdded      "^A[ M][ U][ +] .*$" contained
+syn match svnModified   "^M[ M][ U]  .*$" contained
+syn match svnProperty   "^_M[ U]  .*$" contained
 
 " Synchronization.
 syn sync clear
@@ -44,6 +49,7 @@ if version >= 508 || !exists("did_svn_syn_inits")
   HiLink svnAdded       Identifier
   HiLink svnModified    Special
   HiLink svnProperty    Special
+  HiLink svnRenamed     Special
 
   delcommand HiLink
 endif

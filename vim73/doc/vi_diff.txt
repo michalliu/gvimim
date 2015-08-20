@@ -1,4 +1,4 @@
-*vi_diff.txt*   For Vim version 7.3.  Last change: 2010 Oct 11
+*vi_diff.txt*   For Vim version 7.3.  Last change: 2012 Aug 08
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -88,8 +88,8 @@ Maximum display width	   Unix and Win32: 1024 characters, otherwise 255
 			   characters
 Maximum lhs of a mapping   50 characters.
 Number of different highlighting types: over 30000
-Range of a Number variable:  -2147483648 to 2147483647 (more on 64 bit
-			   systems)
+Range of a Number variable:  -2147483648 to 2147483647 (might be more on 64
+			   bit systems)
 Maximum length of a line in a tags file: 512 bytes.
 
 Information for undo and text in registers is kept in memory, thus when making
@@ -192,7 +192,7 @@ Syntax highlighting.					|:syntax|
 
 Spell checking.						|spell|
 	When the 'spell' option is set Vim will highlight spelling mistakes.
-	About 40 languages are currently supported, selected with the
+	About 50 languages are currently supported, selected with the
 	'spelllang' option.  In source code only comments and strings are
 	checked for spelling.
 
@@ -653,7 +653,7 @@ You can backspace, CTRL-U and CTRL-W over line breaks if the 'backspace' (bs)
 option includes "eol".  You can backspace over the start of insert if the
 'backspace' option includes "start".
 
-When the 'paste' option is set, a few option are reset and mapping in insert
+When the 'paste' option is set, a few options are reset and mapping in insert
 mode and abbreviation are disabled.  This allows for pasting text in windowing
 systems without unexpected results.  When the 'paste' option is reset, the old
 option values are restored.

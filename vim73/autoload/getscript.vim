@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------------
 " getscript.vim
 "  Author:	Charles E. Campbell, Jr.
-"  Date:	Dec 28, 2009
-"  Version:	32
+"  Date:	Jan 17, 2012
+"  Version:	34
 "  Installing:	:help glvs-install
 "  Usage:	:help glvs
 "
@@ -15,7 +15,7 @@
 if exists("g:loaded_getscript")
  finish
 endif
-let g:loaded_getscript= "v32"
+let g:loaded_getscript= "v34"
 if &cp
  echoerr "GetLatestVimScripts is not vi-compatible; not loaded (you need to set nocp)"
  finish
@@ -519,6 +519,7 @@ fun! s:GetOneScript(...)
    " --------------------------------------------------------------------------
    " AutoInstall: only if doautoinstall has been requested by the plugin itself
    " --------------------------------------------------------------------------
+"   call Decho("checking if plugin requested autoinstall: doautoinstall=".doautoinstall)
    if doautoinstall
 "    call Decho(" ")
 "    call Decho("Autoinstall: getcwd<".getcwd()."> filereadable(".sname.")=".filereadable(sname))
@@ -526,7 +527,7 @@ fun! s:GetOneScript(...)
 "     call Decho("<".sname."> is readable")
 "     call Decho("exe silent !".g:GetLatestVimScripts_mv." ".shellescape(sname)." ".shellescape(s:autoinstall))
      exe "silent !".g:GetLatestVimScripts_mv." ".shellescape(sname)." ".shellescape(s:autoinstall)
-     let curdir    = escape(substitute(getcwd(),'\','/','ge'),"|[]*'\" #")
+     let curdir    = fnameescape(substitute(getcwd(),'\','/','ge'))
      let installdir= curdir."/Installed"
      if !isdirectory(installdir)
       call mkdir(installdir)
@@ -549,25 +550,42 @@ fun! s:GetOneScript(...)
      " decompress
      if sname =~ '\.bz2$'
 "      call Decho("decompress: attempt to bunzip2 ".sname)
-      exe "silent !bunzip2 ".shellescape(sname)
+      exe "sil !bunzip2 ".shellescape(sname)
       let sname= substitute(sname,'\.bz2$','','')
 "      call Decho("decompress: new sname<".sname."> after bunzip2")
      elseif sname =~ '\.gz$'
 "      call Decho("decompress: attempt to gunzip ".sname)
-      exe "silent !gunzip ".shellescape(sname)
+      exe "sil !gunzip ".shellescape(sname)
       let sname= substitute(sname,'\.gz$','','')
 "      call Decho("decompress: new sname<".sname."> after gunzip")
+     elseif sname =~ '\.xz$'
+"      call Decho("decompress: attempt to unxz ".sname)
+      exe "sil !unxz ".shellescape(sname)
+      let sname= substitute(sname,'\.xz$','','')
+"      call Decho("decompress: new sname<".sname."> after unxz")
      else
 "      call Decho("no decompression needed")
      endif
      
-     " distribute archive(.zip, .tar, .vba) contents
+     " distribute archive(.zip, .tar, .vba, ...) contents
      if sname =~ '\.zip$'
 "      call Decho("dearchive: attempt to unzip ".sname)
       exe "silent !unzip -o ".shellescape(sname)
      elseif sname =~ '\.tar$'
 "      call Decho("dearchive: attempt to untar ".sname)
       exe "silent !tar -xvf ".shellescape(sname)
+     elseif sname =~ '\.tgz$'
+"      call Decho("dearchive: attempt to untar+gunzip ".sname)
+      exe "silent !tar -zxvf ".shellescape(sname)
+     elseif sname =~ '\.taz$'
+"      call Decho("dearchive: attempt to untar+uncompress ".sname)
+      exe "silent !tar -Zxvf ".shellescape(sname)
+     elseif sname =~ '\.tbz$'
+"      call Decho("dearchive: attempt to untar+bunzip2 ".sname)
+      exe "silent !tar -jxvf ".shellescape(sname)
+     elseif sname =~ '\.txz$'
+"      call Decho("dearchive: attempt to untar+xz ".sname)
+      exe "silent !tar -Jxvf ".shellescape(sname)
      elseif sname =~ '\.vba$'
 "      call Decho("dearchive: attempt to handle a vimball: ".sname)
       silent 1split

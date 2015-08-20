@@ -1,4 +1,4 @@
-*version7.txt*  For Vim version 7.3.  Last change: 2010 Oct 20
+*version7.txt*  For Vim version 7.3.  Last change: 2012 Aug 08
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -1673,7 +1673,7 @@ The GTK font dialog uses a font size zero when the font name doesn't include a
 size.  Use a default size of 10.
 
 This example in the documentation didn't work:
-    :e `=foo . ".c" `
+    :e `=foo . ".c"`
 Skip over the expression in `=expr` when looking for comments, |, % and #.
 
 When ":helpgrep" doesn't find anything there is no error message.
@@ -3587,7 +3587,7 @@ Files:	    src/eval.c, src/getchar.c, src/globals.h, src/main.c
 
 Patch 7.0.085
 Problem:    When doing "make test" the viminfo file is modified.
-Solution:   Use another viminfo file after setting 'compatible.
+Solution:   Use another viminfo file after setting 'compatible'.
 Files:	    src/testdir/test56.in
 
 Patch 7.0.086
@@ -7314,8 +7314,6 @@ Command line completion for :lmap and :lunmap.
 
 Support syntax and filetype completion for user commands. (Christian Brabandt)
 
-Add completion for ":ownsyntax" and improve completion for ":filetype".
-
 Avoid use of the GTK main_loop() so that the GtkFileChooser can be used.
 (James Vega)
 
@@ -9072,7 +9070,7 @@ Patch 7.2.280
 Problem:    A redraw in a custom statusline with %! may cause a crash.
 	    (Yukihiro Nakadaira)
 Solution:   Make a copy of 'statusline'.  Also fix typo in function name
-	    redraw_custum_statusline. (partly by Dominique Pelle)
+	    redraw_custom_statusline. (partly by Dominique Pelle)
 Files:	    src/screen.c
 
 Patch 7.2.281

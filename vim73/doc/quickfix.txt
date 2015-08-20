@@ -1,4 +1,4 @@
-*quickfix.txt*  For Vim version 7.3.  Last change: 2010 Oct 20
+*quickfix.txt*  For Vim version 7.3.  Last change: 2011 May 10
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -215,28 +215,29 @@ command with 'l'.
 
 							*:cex* *:cexpr* *E777*
 :cex[pr][!] {expr}	Create a quickfix list using the result of {expr} and
-			jump to the first error.  If {expr} is a String, then
-			each new-line terminated line in the String is
-			processed using 'errorformat' and the result is added
-			to the quickfix list.  If {expr} is a List, then each
-			String item in the list is processed and added to the
-			quickfix list.  Non String items in the List are
-			ignored. See |:cc|
-			for [!].
+			jump to the first error.
+			If {expr} is a String, then each new-line terminated
+			line in the String is processed using the global value
+			of 'errorformat' and the result is added to the
+			quickfix list.
+			If {expr} is a List, then each String item in the list
+			is processed and added to the quickfix list.  Non
+			String items in the List are ignored.
+			See |:cc| for [!].
 			Examples: >
 				:cexpr system('grep -n xyz *')
 				:cexpr getline(1, '$')
 <
 							*:lex* *:lexpr*
-:lex[pr][!] {expr}	Same as ":cexpr", except the location list for the
+:lex[pr][!] {expr}	Same as |:cexpr|, except the location list for the
 			current window is used instead of the quickfix list.
 
 							*:cgete* *:cgetexpr*
 :cgete[xpr] {expr}	Create a quickfix list using the result of {expr}.
-			Just like ":cexpr", but don't jump to the first error.
+			Just like |:cexpr|, but don't jump to the first error.
 
 							*:lgete* *:lgetexpr*
-:lgete[xpr] {expr}	Same as ":cgetexpr", except the location list for the
+:lgete[xpr] {expr}	Same as |:cgetexpr|, except the location list for the
 			current window is used instead of the quickfix list.
 
 							*:cad* *:caddexpr*
@@ -548,7 +549,7 @@ in the same files a lot faster.
 
 Note that |:copen| (or |:lopen| for |:lgrep|) may be used to open a buffer
 containing the search results in linked form.  The |:silent| command may be
-used to suppress the default full screen grep output.  The |:grep!| form of
+used to suppress the default full screen grep output.  The ":grep!" form of
 the |:grep| command doesn't jump to the first match automatically.  These
 commands can be combined to create a NewGrep command: >
 
@@ -560,7 +561,9 @@ commands can be combined to create a NewGrep command: >
 					*:vim* *:vimgrep* *E682* *E683*
 :vim[grep][!] /{pattern}/[g][j] {file} ...
 			Search for {pattern} in the files {file} ... and set
-			the error list to the matches.
+			the error list to the matches.  Files matching
+			'wildignore' are ignored; files in 'suffixes' are
+			searched last.
 			Without the 'g' flag each line is added only once.
 			With 'g' every match is added.
 
@@ -912,8 +915,8 @@ Basic items
 	%n		error number (finds a number)
 	%m		error message (finds a string)
 	%r		matches the "rest" of a single-line file message %O/P/Q
-	%p		pointer line (finds a sequence of '-', '.' or ' ' and
-			uses the length for the column number)
+	%p		pointer line (finds a sequence of '-', '.', ' ' or
+			tabs and uses the length for the column number)
 	%*{conv}	any scanf non-assignable conversion
 	%%		the single '%' character
 	%s		search text (finds a string)

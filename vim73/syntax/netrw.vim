@@ -22,7 +22,7 @@ syn match  netrwDir		"\.\{1,2}/"						contains=netrwClassify,@NoSpell
 syn match  netrwDir		"\%(\S\+ \)*\S\+/"					contains=netrwClassify,@NoSpell
 syn match  netrwSizeDate	"\<\d\+\s\d\{1,2}/\d\{1,2}/\d\{4}\s"	skipwhite	contains=netrwDateSep,@NoSpell	nextgroup=netrwTime
 syn match  netrwSymLink		"\%(\S\+ \)*\S\+@\ze\%(\s\{2,}\|$\)"  			contains=netrwClassify,@NoSpell
-syn match  netrwExe		"\%(\S\+ \)*\S\+\*\ze\%(\s\{2,}\|$\)" 			contains=netrwClassify,@NoSpell
+syn match  netrwExe		"\%(\S\+ \)*\S*[^~]\*\ze\%(\s\{2,}\|$\)" 		contains=netrwClassify,@NoSpell
 syn match  netrwTreeBar		"^\%([-+|] \)\+"					contains=netrwTreeBarSpace	nextgroup=@netrwTreeGroup
 syn match  netrwTreeBarSpace	" "					contained
 
@@ -63,7 +63,7 @@ if exists("g:netrw_special_syntax") && netrw_special_syntax
  syn match netrwObj		"\(\S\+ \)*\S*\.\%(o\|obj\)\>"			contains=netrwTreeBar,@NoSpell
  syn match netrwTags    	"\<tags\>"					contains=netrwTreeBar,@NoSpell
  syn match netrwTags		"\<\(ANmenu\|ANtags\)\>"			contains=netrwTreeBar,@NoSpell
- syn match netrwTilde		"\(\S\+ \)*\S\+\~\>"				contains=netrwTreeBar,@NoSpell
+ syn match netrwTilde		"\(\S\+ \)*\S\+\~\*\=\>"			contains=netrwTreeBar,@NoSpell
  syn match netrwTmp		"\<tmp\(\S\+ \)*\S\+\>\|\(\S\+ \)*\S*tmp\>"	contains=netrwTreeBar,@NoSpell
 endif
 
@@ -88,7 +88,7 @@ if !exists("did_drchip_netrwlist_syntax")
  hi default link netrwTimeSep	netrwDateSep
  hi default link netrwComma	netrwComment
  hi default link netrwHide	netrwComment
- hi default link netrwMarkFile	Identifier
+ hi default link netrwMarkFile	TabLineSel
 
  " special syntax highlighting (see :he g:netrw_special_syntax)
  hi default link netrwBak	NonText

@@ -1,5 +1,4 @@
-﻿" vim: ts=4 sw=4 et
-set nocompatible
+﻿set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
@@ -42,7 +41,7 @@ filetype plugin indent on
 augroup filetypemore
     au!
     au BufRead,BufNewFile *.json setf json
-    au BufRead,BufNewFile *.smali set filetype=smali
+	au BufRead,BufNewFile *.smali set filetype=smali
 augroup end
 
 " 开启语法高亮
@@ -177,10 +176,41 @@ function! SetColorColumn()
     exec "set cc".op."=".col
 endfunction
 
-" F5新标签
-nmap <F5> :tabnew<CR>
+" F5新标签,跟winmanager自带的fileexplorer冲突
+" norenmap <F5> :tabnew<CR>
 
 " F6 已注册为切换不可见字符显示
 "
 " F7删除无内容的行，但保留换行
 nmap <F7> :%s/^\(\s\+\)$//g<CR>:echo <CR>
+
+" F8切换taglist的显示
+" nmap <F8> :TlistToggle<CR>
+
+" minibufexplorer
+" C-S-TAB and C-TAB is not working in xterm
+noremap <TAB>   :MBEbn<CR>
+noremap <S-TAB> :MBEbp<CR>
+
+" winmanager设置
+" let g:winManagerWindowLayout="BufExplorer,FileExplorer|TagList"
+let g:winManagerWidth=30
+let g:defaultExplorer=0
+
+" nerdtree设置
+let g:NERDTree_title="[NERDTree]"
+let g:winManagerWindowLayout="BufExplorer,NERDTree|TagList"
+
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+    return 1
+endfunction
+
+" F8切换taglist的显示
+nmap <C-W><C-F> :FirstExplorerWindow<CR>
+nmap <C-W><C-B> :BottomExplorerWindow<CR>
+nmap <F8> :WMToggle<CR>
+" nmap wm :WMToggle<CR>

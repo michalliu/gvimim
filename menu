@@ -1,0 +1,13 @@
+#!/bin/bash
+SCRIPT=$(readlink -f $0)
+BASEDIR=$(cd $(dirname $SCRIPT);pwd)
+if [ -d ~/.vim ];then
+read -p "replace ~/.vim?" -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]];then
+	exit 1
+fi
+fi
+set -x
+rm -rf ~/.vim
+ln -sf $BASEDIR/vimfiles ~/.vim

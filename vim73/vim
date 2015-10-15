@@ -1,0 +1,5 @@
+#!/bin/bash
+SCRIPT=$(readlink -f $0)
+BASEDIR=$(cd $(dirname $SCRIPT);pwd)
+export VIM=$BASEDIR
+$BASEDIR/vim_ $@

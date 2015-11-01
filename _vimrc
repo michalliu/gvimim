@@ -214,3 +214,67 @@ nmap <C-W><C-F> :FirstExplorerWindow<CR>
 nmap <C-W><C-B> :BottomExplorerWindow<CR>
 nmap <F8> :WMToggle<CR>
 " nmap wm :WMToggle<CR>
+
+" F12在当前目录生成ctags
+noremap <F12> :call Do_CsTag()<CR>
+function Do_CsTag()
+	let iswindows=0
+	if has("win32")
+		let iswindows=1
+	endif
+    let dir = getcwd()
+    if filereadable("tags")
+        if(iswindows==1)
+            let tagsdeleted=delete(dir."\\"."tags")
+        else
+            let tagsdeleted=delete("./"."tags")
+        endif
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags, code=" . tagsdeleted . " permission error?" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        if(iswindows==1)
+            let csfilesdeleted=delete(dir."\\"."cscope.files")
+        else
+            let csfilesdeleted=delete("./"."cscope.files")
+        endif
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files code=" . csfileseleted . " permission error?" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        if(iswindows==1)
+            let csoutdeleted=delete(dir."\\"."cscope.out")
+        else
+            let csoutdeleted=delete("./"."cscope.out")
+        endif
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out code=" . csoutdeleted . " permission error?" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .>/dev/null 2>&1"
+    endif
+    if(executable('cscope') && has("cscope") )
+        if(iswindows!=1)
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        else
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+        endif
+        silent! execute "!cscope -b"
+        execute "normal :"
+        if filereadable("cscope.out")
+            silent! execute "cs add cscope.out"
+        endif
+    endif
+	redraw!
+	echo "Refresh ctags okay!"
+endfunction

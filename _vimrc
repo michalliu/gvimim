@@ -278,3 +278,10 @@ function Do_CsTag()
 	redraw!
 	echo "Refresh ctags okay!"
 endfunction
+
+if has("gui_running")
+    " au VimEnter * if line('$') > &lines | set go+=r | else | set go-=r | endif
+    " au VimResized * if line('$') > &lines | set go+=r | else | set go-=r | endif
+    au CursorMoved * if line('$') > &lines | set go+=r | else | set go-=r | endif
+    au CursorMovedI * if line('$') > &lines | set go+=r | else | set go-=r | endif
+endif

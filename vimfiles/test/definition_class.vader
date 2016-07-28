@@ -1,0 +1,1380 @@
+Given:
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+
+Execute (generate construct):
+  set ft=cpp
+  4
+  GenDefinition
+
+Expect (construct):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  Hello::Hello()
+  {
+  }
+  
+Execute (generate deconstruct):
+  set ft=cpp
+  5
+  GenDefinition
+
+Expect (deconstruct):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  Hello::~Hello()
+  {
+  }
+  
+Execute (generate Fun1):
+  set ft=cpp
+  6
+  GenDefinition
+
+Expect (Fun1):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  int Hello::Fun1()
+  {
+      return 0;
+  }
+  
+Execute (generate Fun2):
+  set ft=cpp
+  7
+  GenDefinition
+
+Expect (Fun2):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  long long int Hello::Fun2()
+  {
+      return 0;
+  }
+  
+
+Execute (generate Fun3):
+  set ft=cpp
+  8
+  GenDefinition
+
+Expect (Fun3):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string Hello::Fun3()
+  {
+      return "";
+  }
+  
+Execute (generate Fun4):
+  set ft=cpp
+  9
+  GenDefinition
+
+Expect (Fun4):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string* Hello::Fun4(int a)
+  {
+      return NULL;
+  }
+  
+Execute (generate Fun5):
+  set ft=cpp
+  10
+  GenDefinition
+
+Expect (Fun5):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string* Hello::Fun5(char *b)
+  {
+      return NULL;
+  }
+  
+Execute (generate Fun6):
+  set ft=cpp
+  11
+  GenDefinition
+
+Expect (Fun6):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string* Hello::Fun6(long long int c)
+  {
+      return NULL;
+  }
+  
+Execute (generate Fun7):
+  set ft=cpp
+  12
+  GenDefinition
+
+Expect (Fun7):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string& Hello::Fun7(Haha *h)
+  {
+      return std::string();
+  }
+  
+Execute (generate Fun8):
+  set ft=cpp
+  13
+  GenDefinition
+
+Expect (Fun8):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string& Hello::Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2, int i1) const
+  {
+      return std::string();
+  }
+  
+Execute (generate Fun9):
+  set ft=cpp
+  14
+  GenDefinition
+
+Expect (Fun9):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  std::string& Hello::Fun9()
+  {
+      return std::string();
+  }
+  
+Execute (generate Fun10):
+  set ft=cpp
+  15
+  GenDefinition
+
+Expect (Fun10):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  char Hello::Fun10()
+  {
+      return '\0';
+  }
+  
+Execute (generate LongFun):
+  set ft=cpp
+  16
+  GenDefinition
+
+Expect (LongFun):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  long long int Hello::LongFun(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2, int i1) const
+  {
+      return 0;
+  }
+  
+Execute (generate FunMultiLine):
+  set ft=cpp
+  22
+  GenDefinition
+
+Expect (FunMultiLine):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  int Hello::FunMultiLine(int a)
+  {
+      return 0;
+  }
+  
+Execute (generate Fun11):
+  set ft=cpp
+  25
+  GenDefinition
+
+Expect (Fun11):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  const char* Hello::Fun11()
+  {
+      return "";
+  }
+  
+Execute (generate Fun12):
+  set ft=cpp
+  26
+  GenDefinition
+
+Expect (Fun12):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  const char* Hello::Fun12()
+  {
+      return "";
+  }
+  
+Execute (generate Fun13):
+  set ft=cpp
+  27
+  GenDefinition
+
+Expect (Fun13):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  const char* Hello::Fun13()
+  {
+      return "";
+  }
+  
+Execute (generate Fun14):
+  set ft=cpp
+  28
+  GenDefinition
+
+Expect (Fun14):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  const char* Hello::Fun14()
+  {
+      return "";
+  }
+  
+Execute (generate Fun15):
+  set ft=cpp
+  30
+  silent GenDefinition
+
+Expect (Fun15):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  Hello* Hello::Fun15(int a, int b, int c) const
+  {
+      return NULL;
+  }
+  
+
+Execute (generate Fun16):
+  set ft=cpp
+  31
+  silent GenDefinition
+
+Expect (Fun16):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  Hello* Hello::Fun16(int a, int b, int c) 
+  {
+      return NULL;
+  }
+  
+Execute (generate Fun17):
+  set ft=cpp
+  32
+  GenDefinition
+
+Expect (Fun17):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  Haha Hello::Fun17()
+  {
+      return Haha();
+  }
+  
+
+Execute (generate Fun18):
+  set ft=cpp
+  33
+  GenDefinition
+
+Expect (Fun18):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  void Hello::Fun18()
+  {
+  }
+  
+Execute (generate FunDefined):
+  set ft=cpp
+  34
+  silent GenDefinition
+
+Expect (FunDefined):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+
+Execute (generate val):
+  set ft=cpp
+  40
+  GenDefinition
+
+Expect (val):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };
+  
+  int Hello::val;
+  
+Execute (generate val1):
+  set ft=cpp
+  41
+  silent GenDefinition
+
+Expect (val1):
+  class Hello
+  {
+  public:
+      explicit Hello();
+      ~Hello();
+      virtual int Fun1();
+      inline long long int Fun2();
+      std::string Fun3();
+      std::string* Fun4(int a);
+      std::string *Fun5(char *b);
+      std::string * Fun6(long long int c = 0);
+      std::string& Fun7(Haha *h);
+      std::string &Fun8(const Haha &h1, const Haha *h2, const std::string str1, const std::string std::str2 = "", int i1 = 0) const;
+      std::string & Fun9();
+      static char Fun10();
+      long long int LongFun (
+          const Haha  &h1, 
+          const  Haha  *h2, 
+          const std::string  str1, 
+          const  std::string std::str2 = "", 
+          int i1 =    0) const;
+      int 
+        FunMultiLine(
+            int a);
+      const char* Fun11();
+      const char * Fun12();
+      const char *Fun13();
+      const char 
+        *Fun14();
+      virtual Hello* Fun15(int a, int b = 1, int c = 2) const = 0;
+      virtual Hello* Fun16(int a, int b = 1, int c = 2) = 0;
+      Haha Fun17();
+      void Fun18();
+      int FunDefined()
+      {
+          return 0;
+      }
+
+  private:
+      static int val;
+      int val1;
+  };

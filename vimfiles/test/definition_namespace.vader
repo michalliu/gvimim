@@ -1,0 +1,64 @@
+Given:
+  namespace n1
+  {
+  namespace n2
+  {
+  class Hello
+  {
+  public: 
+      void Fun1();
+  };
+
+  void Fun2();
+  }
+  }
+
+#Execute (Fun1):
+#  set ft=cpp
+#  8
+#  GenDefinition
+#
+#Expect (Fun1):
+#  namespace n1
+#  {
+#  namespace n2
+#  {
+#  class Hello
+#  {
+#  public: 
+#      void Fun1();
+#  };
+#
+#  void Fun2();
+#
+#  void Hello::Fun1()
+#  {
+#  }
+#
+#  }
+#  }
+
+Execute (Fun2):
+  set ft=cpp
+  11
+  GenDefinition
+
+Expect (Fun2):
+  namespace n1
+  {
+  namespace n2
+  {
+  class Hello
+  {
+  public: 
+      void Fun1();
+  };
+
+  void Fun2();
+
+  void Fun2()
+  {
+  }
+
+  }
+  }

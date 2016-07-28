@@ -1,0 +1,95 @@
+*gencode.txt* auto generate function definition or declaration
+*gencode*   For Vim version 7.4   Last change: 2016 June 5
+
+==============================================================================
+CONTENTS                                                      *GencodeContent*
+  1. Instro ........................................... |GencodeInstro|
+  2. Usage ............................................ |GencodeUsage|
+  3. Commands ......................................... |GencodeCommands|
+  4. Configuration .................................... |GencodeConfiguratin|
+  5. Dependency ....................................... |Dependency|
+  6. License .......................................... |GencodeLicense|
+  7. Bugs ............................................. |GencodeBugs|
+  8. Contributing ..................................... |GencodeContributing|
+  9. Changelog ........................................ |GencodeChangelog|
+
+==============================================================================
+1. Instro                                                      *GencodeInstro*
+Auto generate function definition or declaration. It dependent with a.vim, a 
+plugin help you to jump to the header or source file. 
+
+==============================================================================
+2. Usage                                                        *GencodeUsage*
+See |GencodeCommands|
+
+==============================================================================
+3. Commands                                                  *GencodeCommands*
+:GenDefinition                                                *:GenDefinition*
+Let the cursor in a declaration of a class. And then run the :GenDefinition 
+command, it will help you to generate the function definition. If you run it 
+in a source file, it will generate the code in the bottom of the file. 
+If you run in it in a header file, it will try to jump to the source file, 
+use :A command, and then generate the code.
+
+:GenDeclaration                                              *:GenDeclaration*
+Let the cursor in a definition of a function. And then run the :GenDeclaration
+command, it will help you to generate the declaration of the function. It will 
+try find the class definition in the same file, or the header file, then 
+generate the declaration in the class's definiton. 
+
+==============================================================================
+4. Configuration                                         *GencodeConfiguratin*
+You can configure the following settings to change the plugin working.  
+
+                                     *g:cpp_gencode_function_attach_statement*
+Use the option to insert some statment into the definiton function body. 
+It must be a list, The element of the list is strings. The plugin will insert
+all the statment in the list into the function body line by line.
+default: >
+  let g:cpp_gencode_function_attach_statement = []
+<
+sample: >
+  let g:cpp_gencode_function_attach_statement = \
+    ['std::cout << "function body"' << std::endl;']
+<
+If it run in a function declaration like this >
+  class Foo
+  {
+    int do_something();
+  }
+<
+It will generate the code like this: >
+  int Foo::do_something()
+  {
+    std::cout << "function body" << std::endl;
+    return 0;
+  }
+<
+==============================================================================
+5. Dependency                                              *GencodeDependency*
+- a.vim https://github.com/vim-scripts/a.vim
+
+==============================================================================
+6. License                                                    *GencodeLicense*
+Copyright (c) 2016 tenfyzhong
+
+==============================================================================
+7. Bugs                                                          *GencodeBugs*
+
+==============================================================================
+8. Contributing                                          *GencodeContributing*
+Think you can make this plugin better? Awesome! Fork it on github and send a
+pull request. 
+Github: https://github.com/tenfyzhong/vim-gencode-cpp
+
+==============================================================================
+9. Changelog                                                *GencodeChangelog*
+v1.3.1 fix when there are not a class, it can not find namespace
+v1.3.0 generate definition support template
+v1.2.1 fix can not find class
+v1.2.0 generate declaration support namespace
+v1.1.0 support namespace
+v1.0.0 Initial stable release
+
+
+vim:ft=help:et:ts=2:sw=2:sts=2:norl:tw=78

@@ -1,0 +1,28 @@
+Given:
+  class Hello : public
+                world
+  {
+  public:
+  }
+  
+  void Hello::Fun1() const
+  {
+  }
+
+Execute:
+  set ft=cpp
+  7
+  GenDeclaration
+
+Expect:
+  class Hello : public
+                world
+  {
+  public:
+      void Fun1() const;
+  }
+  
+  void Hello::Fun1() const
+  {
+  }
+

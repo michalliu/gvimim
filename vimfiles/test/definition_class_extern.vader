@@ -1,0 +1,25 @@
+Given:
+  class Hello : public 
+                world
+  {
+  public:
+      void Fun1();
+  }
+
+Execute:
+  set ft=cpp
+  5
+  GenDefinition
+
+Expect:
+  class Hello : public 
+                world
+  {
+  public:
+      void Fun1();
+  }
+  
+  void Hello::Fun1()
+  {
+  }
+  

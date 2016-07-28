@@ -1,0 +1,67 @@
+Given:
+  class Hello
+  {
+  public:
+  }
+  
+  void Hello::Fun1() const
+  {
+  }
+  
+  long long Hello::Fun2(
+      int a,
+      long b,
+      char c)
+  {
+      return 0;
+  }
+
+
+Execute:
+  set ft=cpp
+  6
+  GenDeclaration
+
+Expect:
+  class Hello
+  {
+  public:
+      void Fun1() const;
+  }
+  
+  void Hello::Fun1() const
+  {
+  }
+  
+  long long Hello::Fun2(
+      int a,
+      long b,
+      char c)
+  {
+      return 0;
+  }
+
+Execute:
+  set ft=cpp
+  10
+  GenDeclaration
+
+Expect:
+  class Hello
+  {
+  public:
+      long long Fun2(int a, long b, char c);
+  }
+  
+  void Hello::Fun1() const
+  {
+  }
+  
+  long long Hello::Fun2(
+      int a,
+      long b,
+      char c)
+  {
+      return 0;
+  }
+

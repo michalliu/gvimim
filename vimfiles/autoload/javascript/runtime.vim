@@ -140,10 +140,10 @@ else
         let s:runjs_ext='js'
         if exists("$JS_CMD")
             let s:js_interpreter = "$JS_CMD"
-        elseif executable('/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc')
-            let s:js_interpreter = '/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc'
         elseif executable('node')
             let s:js_interpreter = 'node'
+        elseif executable('/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc')
+            let s:js_interpreter = '/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc'
         elseif executable('js')
             let s:js_interpreter = 'js'
         else

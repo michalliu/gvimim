@@ -261,7 +261,7 @@ function Do_CsTag()
     endif
     if(executable('ctags'))
         "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .>/dev/null 2>&1"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+fq .>/dev/null 2>&1"
     endif
     if(executable('cscope') && has("cscope") )
         if(iswindows!=1)

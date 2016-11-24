@@ -14,7 +14,11 @@ import logging
 
 import BeautifulSoup
 
-from PyV8 import PyV8
+import platform
+if platform.system() == "Darwin":
+  from PyV8Mac import PyV8
+else:
+  from PyV8 import PyV8
 
 class abstractmethod(object):
     def __init__(self, func):

@@ -21,7 +21,11 @@ sys.path.insert(0, vim.eval('s:install_dir'))
 
 try:
   # PyV8 js runtime use minimal namespace to avoid conflict with other plugin
-  from PyV8 import PyV8
+  import platform
+  if platform.system() == "Darwin":
+    from PyV8Mac import PyV8
+  else:
+    from PyV8 import PyV8
   vim.command('let s:python_support = 1')
 except ImportError,e:
     err = str(e)
@@ -31,6 +35,9 @@ except ImportError,e:
         print " "
         print "sudo ln -s %s /usr/lib" % os.path.join(vim.eval("s:install_dir"),'PyV8','libboost_python.so.1.50.0')
         print " "
+    else:
+        print "PyV8 is not supported "
+        print e
 EOF
 endif
 
@@ -142,13 +149,15 @@ else
             let s:js_interpreter = "$JS_CMD"
         elseif executable('node')
             let s:js_interpreter = 'node'
-        elseif executable('/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc')
-            let s:js_interpreter = '/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc'
+        "elseif executable('/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc')
+            "let s:js_interpreter = '/System/Library/Frameworks/JavaScriptCore.framework/Resources/jsc'
         elseif executable('js')
             let s:js_interpreter = 'js'
         else
-            echoerr 'jsruntime.vim complains Not found a valid JS interpreter. Checked for jsc, js (spidermonkey), and node'
-            finish
+            echoerr 'jsruntime.vim complains Not found a valid JS interpreter. nodeJs is recommended.'
+            let s:js_interpreter = 'NotAvailable'
+			" finish will cause a lot of functions not found
+            " finish
         endif
     endif
 endif

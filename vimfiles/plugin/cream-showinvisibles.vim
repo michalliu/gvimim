@@ -265,11 +265,15 @@ function! Cream_list_toggle(mode)
 	if exists("g:LIST")
 		if g:LIST == 0
 			set list
-			call Cream_list_gray()
+			if has("gui_running")
+			  call Cream_list_gray()
+			endif
 			let g:LIST = 1
 		elseif g:LIST == 1
 			set nolist
-			call Cream_list_restore()
+			if has("gui_running")
+			  call Cream_list_restore()
+			endif
 			let g:LIST = 0
 		endif
 	else

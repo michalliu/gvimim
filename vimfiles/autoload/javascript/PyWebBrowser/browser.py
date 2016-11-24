@@ -3,7 +3,11 @@ import logging
 from urllib2 import Request, urlopen, HTTPError
 from urlparse import urlparse
 from email.utils import formatdate
-from PyV8 import PyV8
+import platform
+if platform.system() == "Darwin":
+  from PyV8Mac import PyV8
+else:
+  from PyV8 import PyV8
 import w3c
 
 import BeautifulSoup

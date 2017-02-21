@@ -61,6 +61,9 @@ set shiftwidth=4
 " 出错时用闪屏代替声音
 set vb
 
+" 显示行号
+set nu
+
 " 常规设置
 if has("win32")
 
@@ -210,6 +213,7 @@ function! NERDTree_IsValid()
 endfunction
 
 " F8切换taglist的显示
+let g:winManagerWindowLayout="NERDTree|TagList"
 nmap <C-W><C-F> :FirstExplorerWindow<CR>
 nmap <C-W><C-B> :BottomExplorerWindow<CR>
 nmap <F8> :WMToggle<CR>
@@ -218,6 +222,14 @@ nmap <F8> :WMToggle<CR>
 " F12在当前目录生成ctags
 noremap <F12> :call Do_CsTag()<CR>
 function Do_CsTag()
+    if(!executable('ctags'))
+        echohl WarningMsg | echo "No executable ctags found!" | echohl None
+        return
+    endif
+    if(!executable('cscope'))
+        echohl WarningMsg | echo "No executable cscope found!" | echohl None
+        return
+    endif
 	let iswindows=0
 	if has("win32")
 		let iswindows=1

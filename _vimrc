@@ -147,7 +147,7 @@ else
 endif
 
 " 插件设置
-let appdata = expand('$VIM/.appdata')
+let appdata = expand('$VIM/../.appdata')
 " jshint
 let g:jshint_rcfile = appdata.'/jshint/.jshintrc'
 " loadtemplate

@@ -4,30 +4,30 @@
 "  FileName:        load_template.vim
 "  Version:         1.0
 "  LastChange:      2010-02-01 09:22:35
-"  Description:     ×Ô¶¯ÔØÈë¸÷ÖÖÄ£°å
-"					1£©ÏÂÔØload_template.vim²å¼ş£¬²¢·ÅÔÚpluginµÄÄ¿Â¼ÏÂ
-"					2£©ÔÚvimrcÎÄ¼şÖĞÖ¸¶¨ÄãµÄÄ£°åÄ¿Â¼£¬À´Ö¸¶¨²å¼ş¶ÁÈ¡Ä£°åµÄÄ¿Â¼¡£
-"					ÈçÔÚÏÂÔØ°üÖĞÒÑ¾­´øÁËÒ»¸ötemplateµÄÄ¿Â¼£¬ÀïÃæ°´ÕÕÎÄ¼şÀ©Õ¹Ãû¡¢ÎÄ¼şÀàĞÍ£¬
-"					·Ö±ğ½¨Á¢ÁËÄ¿Â¼£¬Äã¿ÉÒÔ½«Õâ¸ötemplateÎÄ¼ş¼Ğ¸´ÖÆµ½C:/£¬ÄÇÃ´¾Í¿ÉÒÔÖ¸¶¨
+"  Description:     è‡ªåŠ¨è½½å…¥å„ç§æ¨¡æ¿
+"					1ï¼‰ä¸‹è½½load_template.vimæ’ä»¶ï¼Œå¹¶æ”¾åœ¨pluginçš„ç›®å½•ä¸‹
+"					2ï¼‰åœ¨vimrcæ–‡ä»¶ä¸­æŒ‡å®šä½ çš„æ¨¡æ¿ç›®å½•ï¼Œæ¥æŒ‡å®šæ’ä»¶è¯»å–æ¨¡æ¿çš„ç›®å½•ã€‚
+"					å¦‚åœ¨ä¸‹è½½åŒ…ä¸­å·²ç»å¸¦äº†ä¸€ä¸ªtemplateçš„ç›®å½•ï¼Œé‡Œé¢æŒ‰ç…§æ–‡ä»¶æ‰©å±•åã€æ–‡ä»¶ç±»å‹ï¼Œ
+"					åˆ†åˆ«å»ºç«‹äº†ç›®å½•ï¼Œä½ å¯ä»¥å°†è¿™ä¸ªtemplateæ–‡ä»¶å¤¹å¤åˆ¶åˆ°C:/ï¼Œé‚£ä¹ˆå°±å¯ä»¥æŒ‡å®š
 "					let g:template_path = 'C:\template\'
-"					×¢Òâ£¬×îºóµÄ'\'ÇëÎñ±Ø²»ÒªÍü¼Ç£¨ÔÚlinuxÏÂÒ²ÊÇÒ»ÑùÒª¼Ó '/' £©
-"					3£©ĞÂ½¨/´ò¿ªÒ»¸ötest.cpp£¬Ö´ĞĞ
+"					æ³¨æ„ï¼Œæœ€åçš„'\'è¯·åŠ¡å¿…ä¸è¦å¿˜è®°ï¼ˆåœ¨linuxä¸‹ä¹Ÿæ˜¯ä¸€æ ·è¦åŠ  '/' ï¼‰
+"					3ï¼‰æ–°å»º/æ‰“å¼€ä¸€ä¸ªtest.cppï¼Œæ‰§è¡Œ
 "					:LoadTemplate
-"					ÊÔÊÔ¿´£¬ÊÇ·ñÓĞÀàËÆÄ£°åÁĞ±í³öÀ´À²~
+"					è¯•è¯•çœ‹ï¼Œæ˜¯å¦æœ‰ç±»ä¼¼æ¨¡æ¿åˆ—è¡¨å‡ºæ¥å•¦~
 "					Template filelist:
 "					0		:		cpp/main.cpp
 "					1		:		cpp/singleton.h
 "					please select:
-"					4£©ÄãÉõÖÁ¿ÉÒÔ×Ô¼ºÖÆ×÷Ä£°åÎÄ¼ş~~Ö»ĞèÒª²Î¿¼ÒÑ¾­´æÔÚµÄÄ£°åÎÄ¼ş¾ÍĞĞÀ²~~
-"					Ö§³Övim½Å±¾µÄÅ¶
+"					4ï¼‰ä½ ç”šè‡³å¯ä»¥è‡ªå·±åˆ¶ä½œæ¨¡æ¿æ–‡ä»¶~~åªéœ€è¦å‚è€ƒå·²ç»å­˜åœ¨çš„æ¨¡æ¿æ–‡ä»¶å°±è¡Œå•¦~~
+"					æ”¯æŒvimè„šæœ¬çš„å“¦
 "
-"  					»¶Ó­À´ http://www.vimer.cnÀ´·ÖÏíÄãµÄÄ£°åÎÄ¼ş£¬»òÕßÖ±½Ó¸øÎÒ
-"  					·¢ËÍÓÊ¼şzny2008@gmail.com/dantezhu@vip.qq.com
+"  					æ¬¢è¿æ¥ http://www.vimer.cnæ¥åˆ†äº«ä½ çš„æ¨¡æ¿æ–‡ä»¶ï¼Œæˆ–è€…ç›´æ¥ç»™æˆ‘
+"  					å‘é€é‚®ä»¶zny2008@gmail.com/dantezhu@vip.qq.com
 "  History:
 "=============================================================================
 command! -nargs=? LoadTemplate call LoadTemplate(<f-args>)
 
-"ÀàËÆºê¶¨Òå{{{
+"ç±»ä¼¼å®å®šä¹‰{{{
 if(has("win32") || has("win95") || has("win64") || has("win16"))
 	if !exists('g:vimrc_iswindows')
 		let g:vimrc_iswindows=1
@@ -49,17 +49,17 @@ else
 		let g:template_path=$HOME.'/.vim/template/'
 	endif
 endif
-"ÊÇ·ñĞèÒªÔÚĞÂbufÀï²Ù×÷
+"æ˜¯å¦éœ€è¦åœ¨æ–°bufé‡Œæ“ä½œ
 let s:template_neednew = 'NEEDNEW'
 let s:template_sourcefile = '~'.g:vimrc_splitstr.'template_source.vim'
 let s:template_cursor = 'TEMPLATE_CURSOR'
 "}}}
 
-"¶ÔÍâµÄÖ÷º¯Êı
+"å¯¹å¤–çš„ä¸»å‡½æ•°
 function LoadTemplate(...) "{{{
 	let type = (a:0 ? a:1 : '')
 
-	"»ñÈ¡À©Õ¹Ãû»òÕßÀàĞÍÃû{{{
+	"è·å–æ‰©å±•åæˆ–è€…ç±»å‹å{{{
 	let extension = expand ("%:e")
 	let ftype = &filetype
 
@@ -88,7 +88,7 @@ function LoadTemplate(...) "{{{
 		return
 	endif
 
-	"Èç¹û¾ÍÒ»¸öÄ£°å£¬¾ÍÖ±½ÓÔØÈë¾ÍĞĞ
+	"å¦‚æœå°±ä¸€ä¸ªæ¨¡æ¿ï¼Œå°±ç›´æ¥è½½å…¥å°±è¡Œ
 	if len(templateFileList) == 1
 		call s:LoadFile(templateFileList[0])
 		return
@@ -126,7 +126,7 @@ function LoadTemplate(...) "{{{
 endfunction
 "}}}
 
-"¼ÓÔØlist
+"åŠ è½½list
 function s:AddTemplateFile(list,path,filter) "{{{
 	let filesStr = globpath(a:path, a:filter)
 	let files = split(filesStr, "\n")
@@ -141,7 +141,7 @@ function s:AddTemplateFile(list,path,filter) "{{{
 endfunction
 "}}}
 
-"¼ÓÔØÄ£°åÎÄ¼ş
+"åŠ è½½æ¨¡æ¿æ–‡ä»¶
 function s:LoadFile(path) "{{{
 	let preFileType = &filetype
 	let line = getline('.')
@@ -186,7 +186,7 @@ function s:LoadFile(path) "{{{
 		silent execute "setf ".preFileType
 	endif
 
-	"Ö¸¶¨¹â±êÎ»ÖÃ
+	"æŒ‡å®šå…‰æ ‡ä½ç½®
 	silent! call search(s:template_cursor)
 	let w = expand("<cword>")
 	if w == s:template_cursor 
@@ -196,7 +196,7 @@ function s:LoadFile(path) "{{{
 endfunction
 "}}}
 
-"×Ô¶¯Ö´ĞĞ×îºóµÄ½Å±¾
+"è‡ªåŠ¨æ‰§è¡Œæœ€åçš„è„šæœ¬
 function s:ExeAferLoad() "{{{
 	let exeList = []
 
